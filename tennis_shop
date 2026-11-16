@@ -1,0 +1,1609 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>COURTSIDE — 테니스 라켓 · 스트링 전문몰</title>
+<meta name="description" content="라켓, 스트링, 볼, 슈즈까지. 스트링 작업과 등급별 포인트 적립을 제공하는 테니스 전문 쇼핑몰 COURTSIDE.">
+<link rel="icon" href="img/logo-mark.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,400..900;1,62..125,700..900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+<style>
+/* =========================================================
+   COURTSIDE — 디자인 토큰
+   주 컬러 ① Court Green  #0B4F3C  (하드코트·잔디의 깊은 녹색)
+   주 컬러 ② Ball Yellow  #D9F24A  (테니스공 옵틱 옐로)
+   ========================================================= */
+:root{
+  --green:#0B4F3C; --green-d:#06382A; --green-l:#E4EEE8;
+  --ball:#D9F24A; --ball-d:#B9D12A;
+  --cream:#F5F3EA; --paper:#FBFAF6; --ink:#0E1A15; --ink2:#34413B;
+  --muted:#6B7570; --line:#E3DFD2; --red:#E2463B; --clay:#C8643A;
+  --r-sm:10px; --r:16px; --r-lg:24px;
+  --shadow:0 10px 30px -12px rgba(6,56,42,.25);
+  --shadow-lg:0 30px 80px -20px rgba(6,30,22,.45);
+  --font:"Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",sans-serif;
+  --display:"Archivo","Arial Narrow","Pretendard Variable",Impact,sans-serif;
+  --container:1280px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{font-family:var(--font);color:var(--ink);background:var(--paper);line-height:1.55;-webkit-font-smoothing:antialiased;word-break:keep-all}
+img{max-width:100%;display:block}
+button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
+input,select,textarea{font:inherit;color:inherit}
+a{color:inherit;text-decoration:none}
+.container{max-width:var(--container);margin:0 auto;padding:0 28px}
+.display{font-family:var(--display);font-stretch:78%;font-weight:900;text-transform:uppercase;letter-spacing:-.01em;line-height:.92}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--green)}
+.eyebrow::before{content:"";width:10px;height:10px;border-radius:50%;background:var(--ball);box-shadow:0 0 0 3px var(--green)}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+
+/* 버튼 */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:50px;padding:0 24px;border-radius:999px;font-weight:700;font-size:15px;transition:transform .2s,background .2s,box-shadow .2s,color .2s;white-space:nowrap}
+.btn:active{transform:scale(.97)}
+.btn-primary{background:var(--green);color:#fff}
+.btn-primary:hover{background:var(--green-d);box-shadow:var(--shadow)}
+.btn-ball{background:var(--ball);color:var(--ink)}
+.btn-ball:hover{background:#e6ff5c;box-shadow:0 10px 30px -10px rgba(217,242,74,.7)}
+.btn-ghost{border:1.5px solid currentColor}
+.btn-ghost:hover{background:rgba(255,255,255,.1)}
+.btn-line{border:1.5px solid var(--line);background:#fff}
+.btn-line:hover{border-color:var(--ink)}
+.btn-sm{height:38px;padding:0 16px;font-size:13px}
+.btn-block{width:100%}
+.btn[disabled]{opacity:.45;pointer-events:none}
+
+/* ===== 상단 공지바 ===== */
+.topbar{background:var(--green-d);color:var(--ball);font-size:12.5px;font-weight:600;overflow:hidden;white-space:nowrap}
+.topbar-track{display:inline-flex;gap:56px;padding:9px 56px 9px 0;animation:marquee 32s linear infinite}
+.topbar-track span{display:inline-flex;align-items:center;gap:10px}
+.topbar-track span::before{content:"●";font-size:7px;color:#fff;opacity:.6}
+@keyframes marquee{to{transform:translateX(-50%)}}
+
+/* ===== 헤더 ===== */
+.header{position:sticky;top:0;z-index:50;background:rgba(251,250,246,.86);backdrop-filter:saturate(1.4) blur(14px);-webkit-backdrop-filter:saturate(1.4) blur(14px);border-bottom:1px solid transparent;transition:border-color .3s,box-shadow .3s}
+.header.scrolled{border-color:var(--line);box-shadow:0 6px 24px -18px rgba(0,0,0,.4)}
+.header-in{display:flex;align-items:center;gap:28px;height:74px}
+.logo{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.logo img{width:34px;height:34px}
+.logo b{font-family:var(--display);font-stretch:80%;font-weight:900;font-size:25px;letter-spacing:.01em;color:var(--green)}
+.nav{display:flex;gap:4px;margin-left:12px}
+.nav a{padding:9px 13px;border-radius:999px;font-size:15px;font-weight:600;color:var(--ink2);transition:background .2s,color .2s}
+.nav a:hover{background:var(--green-l);color:var(--green)}
+.header-actions{margin-left:auto;display:flex;align-items:center;gap:6px}
+.icon-btn{position:relative;width:44px;height:44px;border-radius:50%;display:grid;place-items:center;transition:background .2s}
+.icon-btn:hover{background:var(--green-l)}
+.icon-btn svg{width:22px;height:22px}
+.badge-count{position:absolute;top:3px;right:2px;min-width:19px;height:19px;padding:0 5px;border-radius:999px;background:var(--ball);color:var(--ink);font-size:11px;font-weight:800;display:grid;place-items:center;border:2px solid var(--paper);transform:scale(0);transition:transform .25s cubic-bezier(.3,1.6,.5,1)}
+.badge-count.show{transform:scale(1)}
+.user-chip{display:flex;align-items:center;gap:8px;height:42px;padding:0 14px 0 6px;border-radius:999px;border:1.5px solid var(--line);background:#fff;font-size:14px;font-weight:700;transition:border-color .2s}
+.user-chip:hover{border-color:var(--green)}
+.user-chip .av{width:30px;height:30px;border-radius:50%;background:var(--green);color:var(--ball);display:grid;place-items:center;font-size:13px;font-weight:800}
+.user-chip .gr{font-size:10.5px;font-weight:800;letter-spacing:.06em;padding:2px 7px;border-radius:999px;background:var(--ball);color:var(--ink)}
+.menu-btn{display:none}
+
+/* ===== 히어로 슬라이더 ===== */
+.hero{position:relative;height:clamp(560px,86vh,820px);overflow:hidden;background:#06201a;color:#fff}
+.slide{position:absolute;inset:0;opacity:0;visibility:hidden;transition:opacity 1.1s ease,visibility 1.1s}
+.slide.active{opacity:1;visibility:visible}
+.slide img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale(1.12);transition:transform 7.5s cubic-bezier(.2,.6,.3,1)}
+.slide.active img{transform:scale(1)}
+.slide::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(4,22,17,.72) 0%,rgba(4,22,17,.35) 45%,rgba(4,22,17,0) 70%),linear-gradient(0deg,rgba(4,22,17,.55),rgba(4,22,17,0) 35%)}
+.slide-content{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;justify-content:center;max-width:var(--container);margin:0 auto;padding:0 28px 60px}
+.slide-content>*{opacity:0;transform:translateY(26px);transition:opacity .8s,transform .8s cubic-bezier(.2,.7,.2,1)}
+.slide.active .slide-content>*{opacity:1;transform:none}
+.slide.active .slide-content>*:nth-child(2){transition-delay:.12s}
+.slide.active .slide-content>*:nth-child(3){transition-delay:.24s}
+.slide.active .slide-content>*:nth-child(4){transition-delay:.36s}
+.slide-tag{display:inline-flex;align-self:flex-start;align-items:center;gap:8px;padding:7px 14px;border-radius:999px;background:var(--ball);color:var(--ink);font-size:12.5px;font-weight:800;letter-spacing:.08em;margin-bottom:22px}
+.slide h1,.slide h2{font-size:clamp(54px,8.6vw,128px);max-width:820px}
+.slide h1 em,.slide h2 em{font-style:italic;color:var(--ball)}
+.slide p{font-size:clamp(16px,1.5vw,19px);max-width:520px;margin:22px 0 32px;color:rgba(255,255,255,.86);font-weight:500}
+.slide-cta{display:flex;gap:12px;flex-wrap:wrap}
+.hero-ui{position:absolute;z-index:5;left:0;right:0;bottom:34px}
+.hero-ui .container{display:flex;align-items:center;gap:22px}
+.hero-count{font-family:var(--display);font-stretch:80%;font-weight:800;font-size:18px;letter-spacing:.05em;min-width:78px}
+.hero-count b{color:var(--ball)}
+.dots{display:flex;gap:8px;flex:1;max-width:420px}
+.dot{flex:1;height:4px;border-radius:4px;background:rgba(255,255,255,.28);overflow:hidden;position:relative}
+.dot i{position:absolute;inset:0;background:var(--ball);transform-origin:left;transform:scaleX(0)}
+.dot.done i{transform:scaleX(1)}
+.dot.active i{animation:fill var(--dur,6s) linear forwards}
+.hero.paused .dot.active i{animation-play-state:paused}
+@keyframes fill{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+.hero-arrows{margin-left:auto;display:flex;gap:10px}
+.hero-arrows button{width:52px;height:52px;border-radius:50%;border:1.5px solid rgba(255,255,255,.45);display:grid;place-items:center;transition:background .2s,border-color .2s,color .2s}
+.hero-arrows button:hover{background:var(--ball);border-color:var(--ball);color:var(--ink)}
+.hero-arrows svg{width:20px;height:20px}
+
+/* ===== 혜택 스트립 ===== */
+.perks{background:var(--green);color:#fff}
+.perks .container{display:grid;grid-template-columns:repeat(4,1fr)}
+.perk{display:flex;align-items:center;gap:14px;padding:24px 18px;border-right:1px solid rgba(255,255,255,.12)}
+.perk:last-child{border-right:0}
+.perk .ic{width:44px;height:44px;border-radius:12px;background:rgba(217,242,74,.14);color:var(--ball);display:grid;place-items:center;flex-shrink:0}
+.perk .ic svg{width:22px;height:22px}
+.perk b{display:block;font-size:15px}
+.perk small{font-size:13px;color:rgba(255,255,255,.7)}
+
+/* ===== 섹션 공통 ===== */
+section.block{padding:110px 0}
+.sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:44px;flex-wrap:wrap}
+.sec-head h2{font-size:clamp(44px,5.6vw,76px);margin-top:12px;color:var(--ink)}
+.sec-head p{max-width:420px;color:var(--muted);font-size:16px}
+
+/* ===== 카테고리 ===== */
+.cats{display:grid;grid-template-columns:repeat(6,1fr);gap:16px}
+.cat{position:relative;border-radius:var(--r-lg);background:var(--cream);overflow:hidden;aspect-ratio:3/4;display:flex;flex-direction:column;justify-content:flex-end;padding:18px;transition:transform .35s,box-shadow .35s;text-align:left}
+.cat img{position:absolute;inset:0;width:100%;height:78%;object-fit:cover;transition:transform .6s}
+.cat:hover{transform:translateY(-6px);box-shadow:var(--shadow)}
+.cat:hover img{transform:scale(1.07) rotate(-2deg)}
+.cat b{position:relative;font-size:17px}
+.cat small{position:relative;color:var(--muted);font-size:13px;display:flex;justify-content:space-between;align-items:center}
+.cat small i{font-style:normal;width:26px;height:26px;border-radius:50%;background:var(--green);color:var(--ball);display:grid;place-items:center;transition:transform .3s}
+.cat:hover small i{transform:rotate(-45deg)}
+
+/* ===== 상품 ===== */
+.shop-bar{display:flex;gap:14px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin-bottom:30px}
+.tabs{display:flex;gap:8px;flex-wrap:wrap}
+.tab{height:42px;padding:0 18px;border-radius:999px;border:1.5px solid var(--line);background:#fff;font-weight:700;font-size:14px;color:var(--ink2);transition:all .2s}
+.tab:hover{border-color:var(--green);color:var(--green)}
+.tab.active{background:var(--green);border-color:var(--green);color:#fff}
+.tab .n{font-size:11px;opacity:.6;margin-left:4px}
+.sort{height:42px;padding:0 38px 0 16px;border-radius:999px;border:1.5px solid var(--line);background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%230E1A15' stroke-width='3'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") no-repeat right 15px center;appearance:none;font-weight:600;font-size:14px}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:26px 20px}
+.card{display:flex;flex-direction:column;cursor:pointer}
+.card-img{position:relative;border-radius:var(--r-lg);overflow:hidden;background:var(--cream);aspect-ratio:1}
+.card-img img{width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+.card:hover .card-img img{transform:scale(1.06)}
+.flag{position:absolute;top:14px;left:14px;display:flex;gap:6px}
+.flag span{font-size:11px;font-weight:800;letter-spacing:.08em;padding:5px 10px;border-radius:999px;background:var(--ink);color:#fff}
+.flag .best{background:var(--ball);color:var(--ink)}
+.flag .sale{background:var(--red)}
+.quick{position:absolute;left:14px;right:14px;bottom:14px;height:46px;border-radius:999px;background:var(--green);color:#fff;font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center;gap:8px;opacity:0;transform:translateY(10px);transition:all .3s}
+.card:hover .quick{opacity:1;transform:none}
+.quick:hover{background:var(--green-d)}
+.card-body{padding:16px 4px 0}
+.card-brand{font-size:12px;font-weight:800;letter-spacing:.12em;color:var(--muted)}
+.card-name{font-size:17px;font-weight:700;margin:2px 0 8px}
+.chips{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:10px}
+.chip{font-size:11.5px;font-weight:600;padding:3px 9px;border-radius:6px;background:var(--green-l);color:var(--green)}
+.price-row{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+.price-row .off{color:var(--red);font-weight:800;font-size:17px}
+.price-row .now{font-weight:800;font-size:18px}
+.price-row del{color:#9aa29e;font-size:13.5px}
+.earn{margin-top:6px;font-size:12.5px;color:var(--green);font-weight:600;display:flex;align-items:center;gap:5px}
+.earn::before{content:"P";width:16px;height:16px;border-radius:50%;background:var(--ball);color:var(--ink);font-size:10px;font-weight:900;display:grid;place-items:center}
+.empty{grid-column:1/-1;text-align:center;padding:60px 0;color:var(--muted)}
+
+/* ===== 라켓 가이드 & 파인더 ===== */
+.guide{background:var(--cream)}
+.guide-grid{display:grid;grid-template-columns:1.05fr 1fr;gap:28px;align-items:stretch}
+.spec-cards{display:grid;gap:14px}
+.spec{background:#fff;border-radius:var(--r-lg);padding:24px 26px;display:grid;grid-template-columns:64px 1fr;gap:18px;align-items:start;border:1px solid var(--line)}
+.spec .num{font-family:var(--display);font-stretch:75%;font-weight:900;font-size:46px;line-height:1;color:var(--green)}
+.spec h3{font-size:18px;margin-bottom:6px}
+.spec p{font-size:14.5px;color:var(--ink2)}
+.scale{display:flex;justify-content:space-between;margin-top:12px;font-size:12px;font-weight:700;color:var(--muted)}
+.scale-bar{height:8px;border-radius:8px;background:linear-gradient(90deg,var(--ball),var(--green));margin-top:6px}
+.finder{background:var(--green);color:#fff;border-radius:var(--r-lg);padding:34px;position:relative;overflow:hidden}
+.finder::before{content:"";position:absolute;width:420px;height:420px;border-radius:50%;border:2px solid rgba(217,242,74,.12);right:-160px;top:-160px;box-shadow:0 0 0 40px rgba(217,242,74,.04),0 0 0 80px rgba(217,242,74,.03)}
+.finder h3{font-size:42px;color:var(--ball);position:relative}
+.finder>p{color:rgba(255,255,255,.75);margin:8px 0 22px;position:relative}
+.q{margin-bottom:18px;position:relative}
+.q b{display:block;font-size:14px;margin-bottom:9px;color:rgba(255,255,255,.9)}
+.opts{display:flex;flex-wrap:wrap;gap:8px}
+.opt{height:40px;padding:0 16px;border-radius:999px;border:1.5px solid rgba(255,255,255,.28);font-size:14px;font-weight:600;transition:all .2s}
+.opt:hover{border-color:var(--ball)}
+.opt.on{background:var(--ball);border-color:var(--ball);color:var(--ink)}
+.finder-result{margin-top:22px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);border-radius:var(--r);padding:16px;display:none;gap:16px;align-items:center;position:relative}
+.finder-result.show{display:flex;animation:pop .45s cubic-bezier(.2,1.4,.4,1)}
+.finder-result img{width:96px;height:96px;border-radius:14px;background:var(--cream);object-fit:cover}
+.finder-result small{color:var(--ball);font-weight:700;font-size:12px;letter-spacing:.08em}
+.finder-result h4{font-size:19px;margin:2px 0 4px}
+.finder-result p{font-size:13.5px;color:rgba(255,255,255,.78)}
+@keyframes pop{from{opacity:0;transform:scale(.94)}to{opacity:1;transform:none}}
+
+/* ===== 스트링 랩 ===== */
+.lab{background:var(--ink);color:#fff;position:relative;overflow:hidden}
+.lab::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.04) 2px,transparent 2px),linear-gradient(90deg,rgba(255,255,255,.04) 2px,transparent 2px);background-size:46px 46px;mask-image:radial-gradient(circle at 70% 30%,#000,transparent 70%)}
+.lab .sec-head h2{color:#fff}
+.lab .sec-head p{color:rgba(255,255,255,.65)}
+.lab .eyebrow{color:var(--ball)}
+.strings{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;position:relative}
+.sCard{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:var(--r-lg);padding:18px;cursor:pointer;transition:all .3s;text-align:left}
+.sCard:hover,.sCard.on{background:rgba(217,242,74,.08);border-color:var(--ball);transform:translateY(-4px)}
+.sCard img{border-radius:14px;margin-bottom:14px;aspect-ratio:1;object-fit:cover;width:100%}
+.sCard small{font-size:11px;font-weight:800;letter-spacing:.1em;color:var(--ball)}
+.sCard h4{font-size:16px;margin:2px 0 12px}
+.meter{display:grid;grid-template-columns:52px 1fr;align-items:center;gap:8px;font-size:12px;color:rgba(255,255,255,.7);margin-top:6px}
+.meter span{height:6px;border-radius:6px;background:rgba(255,255,255,.1);overflow:hidden}
+.meter span i{display:block;height:100%;background:var(--ball);border-radius:6px;width:0;transition:width 1s cubic-bezier(.2,.7,.2,1)}
+.lab.inview .meter span i{width:var(--w)}
+.tension{margin-top:26px;display:grid;grid-template-columns:1.3fr 1fr;gap:20px;position:relative}
+.t-panel{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:var(--r-lg);padding:28px}
+.t-panel h3{font-size:22px;margin-bottom:4px}
+.t-panel>p{color:rgba(255,255,255,.65);font-size:14px}
+.t-val{display:flex;align-items:baseline;gap:10px;margin:18px 0 6px}
+.t-val b{font-family:var(--display);font-stretch:75%;font-weight:900;font-size:76px;line-height:1;color:var(--ball)}
+.t-val span{font-size:15px;color:rgba(255,255,255,.7)}
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:8px;border-radius:8px;background:linear-gradient(90deg,var(--ball) var(--p,50%),rgba(255,255,255,.15) var(--p,50%));outline:none}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:26px;height:26px;border-radius:50%;background:#fff;border:6px solid var(--ball);cursor:grab;box-shadow:0 4px 14px rgba(0,0,0,.4)}
+input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;background:#fff;border:6px solid var(--ball);cursor:grab}
+.t-scale{display:flex;justify-content:space-between;font-size:12px;color:rgba(255,255,255,.5);margin-top:8px}
+.t-feel{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:20px}
+.t-feel div{background:rgba(0,0,0,.25);border-radius:12px;padding:12px 14px;font-size:13px;color:rgba(255,255,255,.7)}
+.t-feel div b{display:block;font-size:20px;color:#fff}
+.t-tip{margin-top:14px;font-size:14px;color:rgba(255,255,255,.85);background:rgba(217,242,74,.1);border-left:3px solid var(--ball);padding:12px 14px;border-radius:0 10px 10px 0}
+.svc{border-radius:var(--r-lg);overflow:hidden;position:relative;background:var(--green);display:flex;flex-direction:column}
+.svc img{width:100%;height:220px;object-fit:cover}
+.svc div{padding:24px}
+.svc h3{font-size:22px;margin-bottom:8px}
+.svc ul{list-style:none;font-size:14px;color:rgba(255,255,255,.82);display:grid;gap:6px;margin-bottom:18px}
+.svc li::before{content:"✓";color:var(--ball);font-weight:900;margin-right:8px}
+
+/* ===== 멤버십 ===== */
+.tiers{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.tier{border-radius:var(--r-lg);padding:28px 24px;border:1.5px solid var(--line);background:#fff;position:relative;transition:transform .3s,box-shadow .3s}
+.tier:hover{transform:translateY(-6px);box-shadow:var(--shadow)}
+.tier.me{border-color:var(--green);box-shadow:0 0 0 4px var(--green-l)}
+.tier.me::after{content:"MY GRADE";position:absolute;top:-12px;right:20px;background:var(--green);color:var(--ball);font-size:11px;font-weight:800;letter-spacing:.1em;padding:4px 10px;border-radius:999px}
+.tier-badge{width:58px;height:58px;border-radius:50%;display:grid;place-items:center;margin-bottom:18px}
+.tier-badge svg{width:30px;height:30px}
+.tier h3{font-family:var(--display);font-stretch:78%;font-weight:900;font-size:30px;text-transform:uppercase;line-height:1}
+.tier .ko{font-size:13px;color:var(--muted);font-weight:600}
+.tier .rate{margin:18px 0 6px;font-family:var(--display);font-stretch:75%;font-weight:900;font-size:62px;line-height:1;color:var(--green)}
+.tier .rate small{font-size:18px;font-family:var(--font);font-weight:700;color:var(--ink2);margin-left:4px}
+.tier .cond{font-size:13.5px;font-weight:700;padding:8px 12px;border-radius:10px;background:var(--cream);margin-bottom:16px}
+.tier ul{list-style:none;font-size:14px;display:grid;gap:7px;color:var(--ink2)}
+.tier li{display:flex;gap:8px}
+.tier li::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--green);margin-top:9px;flex-shrink:0}
+.tier.gs{background:var(--green);color:#fff;border-color:var(--green)}
+.tier.gs .ko,.tier.gs ul{color:rgba(255,255,255,.75)}
+.tier.gs .rate{color:var(--ball)}.tier.gs .rate small{color:#fff}
+.tier.gs .cond{background:rgba(255,255,255,.1)}
+.tier.gs li::before{background:var(--ball)}
+.member-cta{margin-top:28px;border-radius:var(--r-lg);background:var(--ball);padding:30px 36px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.member-cta h3{font-size:clamp(30px,3.4vw,46px)}
+.member-cta p{font-weight:600;color:var(--ink2)}
+.point-rules{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:16px}
+.point-rules div{border:1px dashed #b8b3a2;border-radius:var(--r);padding:16px 18px;font-size:14px;color:var(--ink2)}
+.point-rules b{display:block;color:var(--ink);font-size:15px;margin-bottom:2px}
+
+/* ===== 푸터 ===== */
+.footer{background:var(--green-d);color:rgba(255,255,255,.72);padding:70px 0 40px;font-size:14px}
+.footer-top{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:30px;padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,.12)}
+.footer .logo b{color:var(--ball)}
+.footer h4{color:#fff;font-size:15px;margin-bottom:14px}
+.footer ul{list-style:none;display:grid;gap:9px}
+.footer a:hover{color:var(--ball)}
+.cs-num{font-family:var(--display);font-stretch:80%;font-weight:900;font-size:34px;color:#fff;line-height:1.1;margin:10px 0 4px}
+.news{display:flex;gap:8px;margin-top:16px}
+.news input{flex:1;height:46px;border-radius:999px;border:0;padding:0 18px;background:rgba(255,255,255,.1);color:#fff;outline:none}
+.news input::placeholder{color:rgba(255,255,255,.5)}
+.biz{padding-top:28px;font-size:12.5px;line-height:1.9;color:rgba(255,255,255,.5)}
+.biz-big{font-family:var(--display);font-stretch:70%;font-weight:900;font-size:clamp(70px,15vw,220px);line-height:.8;color:rgba(255,255,255,.05);text-align:center;margin-top:40px;letter-spacing:-.02em;user-select:none}
+
+/* ===== 오버레이 공통 ===== */
+.overlay{position:fixed;inset:0;z-index:100;background:rgba(6,20,15,.55);backdrop-filter:blur(4px);opacity:0;visibility:hidden;transition:opacity .3s,visibility .3s}
+.overlay.open{opacity:1;visibility:visible}
+.modal{position:fixed;z-index:110;left:50%;top:50%;width:min(94vw,var(--mw,560px));max-height:92vh;overflow:auto;background:var(--paper);border-radius:var(--r-lg);box-shadow:var(--shadow-lg);opacity:0;visibility:hidden;transform:translate(-50%,-46%) scale(.98);transition:all .35s cubic-bezier(.2,.8,.2,1)}
+.modal.open{opacity:1;visibility:visible;transform:translate(-50%,-50%)}
+.modal-x{position:absolute;top:16px;right:16px;width:40px;height:40px;border-radius:50%;background:#fff;border:1px solid var(--line);display:grid;place-items:center;z-index:3}
+.modal-x:hover{background:var(--cream)}
+.modal-x svg{width:18px;height:18px}
+.m-pad{padding:34px}
+.m-title{font-size:26px;font-weight:800;margin-bottom:6px}
+.m-sub{color:var(--muted);font-size:14.5px;margin-bottom:22px}
+
+/* 폼 */
+.field{display:grid;gap:6px;margin-bottom:14px}
+.field label{font-size:13px;font-weight:700;color:var(--ink2)}
+.field label i{color:var(--red);font-style:normal}
+.inp{height:50px;border-radius:12px;border:1.5px solid var(--line);background:#fff;padding:0 15px;outline:none;transition:border-color .2s,box-shadow .2s;width:100%}
+.inp:focus{border-color:var(--green);box-shadow:0 0 0 4px var(--green-l)}
+.inp.err{border-color:var(--red)}
+select.inp{appearance:none;background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%230E1A15' stroke-width='3'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") no-repeat right 15px center;padding-right:38px}
+.err-msg{font-size:12.5px;color:var(--red);min-height:0}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.check{display:flex;align-items:flex-start;gap:10px;font-size:14px;cursor:pointer;padding:6px 0}
+.check input{width:20px;height:20px;accent-color:var(--green);margin-top:1px;flex-shrink:0}
+.auth-tabs{display:grid;grid-template-columns:1fr 1fr;background:var(--cream);border-radius:999px;padding:5px;margin-bottom:24px}
+.auth-tabs button{height:44px;border-radius:999px;font-weight:700;color:var(--muted);transition:all .25s}
+.auth-tabs button.on{background:#fff;color:var(--ink);box-shadow:0 4px 12px -6px rgba(0,0,0,.25)}
+.welcome-box{display:flex;gap:12px;align-items:center;background:var(--green);color:#fff;border-radius:14px;padding:14px 16px;margin-bottom:18px;font-size:14px}
+.welcome-box b{color:var(--ball);font-size:20px;font-family:var(--display);font-stretch:80%}
+.auth-note{margin-top:14px;font-size:12.5px;color:var(--muted);text-align:center}
+
+/* 상품 상세 */
+.pd{display:grid;grid-template-columns:1fr 1fr}
+.pd-img{background:var(--cream);position:relative}
+.pd-img img{width:100%;height:auto;aspect-ratio:1;object-fit:cover;position:sticky;top:0}
+.pd-info{padding:38px 34px 30px}
+.pd-info .card-brand{margin-bottom:2px}
+.pd-info h2{font-size:30px;line-height:1.2;margin-bottom:10px}
+.pd-info .desc{color:var(--ink2);font-size:14.5px;margin:14px 0 18px}
+.spec-table{width:100%;border-collapse:collapse;font-size:13.5px;margin-bottom:20px}
+.spec-table td{padding:8px 0;border-bottom:1px solid var(--line)}
+.spec-table td:first-child{color:var(--muted);width:42%}
+.spec-table td:last-child{font-weight:700}
+.str-box{border:1.5px solid var(--line);border-radius:14px;padding:14px;margin-bottom:14px;background:#fff}
+.str-box.on{border-color:var(--green);background:var(--green-l)}
+.str-box .check{padding:0}
+.str-detail{display:none;margin-top:12px}
+.str-box.on .str-detail{display:block}
+.fee-note{font-size:12.5px;color:var(--green);font-weight:600;margin-top:4px}
+.qty{display:inline-flex;align-items:center;border:1.5px solid var(--line);border-radius:999px;background:#fff;height:44px}
+.qty button{width:42px;height:100%;font-size:18px;font-weight:700}
+.qty span{min-width:30px;text-align:center;font-weight:800}
+.pd-total{display:flex;justify-content:space-between;align-items:center;padding:18px 0;border-top:2px solid var(--ink);margin-top:18px}
+.pd-total b{font-size:26px;font-weight:900}
+.pd-btns{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+
+/* 장바구니 드로어 */
+.drawer{position:fixed;z-index:110;top:0;right:0;bottom:0;width:min(440px,100vw);background:var(--paper);box-shadow:var(--shadow-lg);transform:translateX(105%);transition:transform .45s cubic-bezier(.2,.8,.2,1);display:flex;flex-direction:column}
+.drawer.open{transform:none}
+.drawer-head{display:flex;align-items:center;justify-content:space-between;padding:22px 24px;border-bottom:1px solid var(--line)}
+.drawer-head h3{font-size:20px}
+.drawer-head .modal-x{position:static}
+.drawer-body{flex:1;overflow:auto;padding:10px 24px}
+.ship-meter{margin:14px 0 6px;font-size:13px;font-weight:600;color:var(--ink2)}
+.ship-meter .bar{height:6px;border-radius:6px;background:var(--line);margin-top:8px;overflow:hidden}
+.ship-meter .bar i{display:block;height:100%;background:var(--green);border-radius:6px;transition:width .5s}
+.ci{display:grid;grid-template-columns:84px 1fr;gap:14px;padding:16px 0;border-bottom:1px solid var(--line)}
+.ci img{width:84px;height:84px;border-radius:14px;background:var(--cream);object-fit:cover}
+.ci h4{font-size:15px;line-height:1.3}
+.ci .opt-txt{font-size:12.5px;color:var(--muted);margin:3px 0 8px;line-height:1.45}
+.ci-row{display:flex;justify-content:space-between;align-items:center}
+.ci .qty{height:34px}
+.ci .qty button{width:32px}
+.ci-del{font-size:12px;color:var(--muted);text-decoration:underline;margin-left:8px}
+.drawer-foot{padding:20px 24px 24px;border-top:1px solid var(--line);background:#fff}
+.sum-row{display:flex;justify-content:space-between;font-size:14px;margin-bottom:7px;color:var(--ink2)}
+.sum-row.total{font-size:18px;font-weight:900;color:var(--ink);margin:12px 0 4px}
+.sum-row .minus{color:var(--red)}
+.cart-empty{text-align:center;padding:70px 10px;color:var(--muted)}
+.cart-empty img{width:120px;margin:0 auto 16px;border-radius:50%}
+
+/* 결제 */
+.co{display:grid;grid-template-columns:1.35fr 1fr;min-height:100%}
+.co-main{padding:34px}
+.co-side{background:var(--cream);padding:34px 28px;border-left:1px solid var(--line)}
+.co h4{font-size:16px;margin:24px 0 12px;display:flex;align-items:center;gap:8px}
+.co h4:first-of-type{margin-top:0}
+.co h4 .n{width:24px;height:24px;border-radius:50%;background:var(--green);color:var(--ball);display:grid;place-items:center;font-size:12px}
+.pay-methods{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.pm{position:relative}
+.pm input{position:absolute;opacity:0}
+.pm span{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;height:68px;border:1.5px solid var(--line);border-radius:12px;background:#fff;font-size:13px;font-weight:700;transition:all .2s;cursor:pointer;text-align:center}
+.pm span i{font-style:normal;font-size:11px;font-weight:900;padding:2px 7px;border-radius:5px}
+.pm input:checked+span{border-color:var(--green);box-shadow:0 0 0 3px var(--green-l);color:var(--green)}
+.pm input:focus-visible+span{outline:2px solid var(--green)}
+.pay-extra{margin-top:12px}
+.pt-box{background:#fff;border:1.5px solid var(--line);border-radius:14px;padding:16px}
+.pt-line{display:flex;gap:8px}
+.pt-line .inp{flex:1}
+.pt-help{font-size:12.5px;color:var(--muted);margin-top:8px}
+.co-items{display:grid;gap:12px;margin-bottom:20px;max-height:240px;overflow:auto;padding-right:4px}
+.co-it{display:grid;grid-template-columns:56px 1fr auto;gap:12px;align-items:center;font-size:13.5px}
+.co-it img{width:56px;height:56px;border-radius:12px;background:#fff;object-fit:cover}
+.co-it small{color:var(--muted);display:block;font-size:12px;line-height:1.35}
+.earn-box{margin-top:14px;padding:14px;border-radius:12px;background:var(--green);color:#fff;font-size:13.5px;display:flex;justify-content:space-between;align-items:center}
+.earn-box b{color:var(--ball);font-size:18px}
+.demo-note{font-size:12px;color:var(--muted);margin-top:12px;line-height:1.5}
+
+/* 가상 PG 결제창 */
+.pg{--mw:400px;text-align:center}
+.pg-head{padding:20px;color:#fff;font-weight:800;font-size:17px;display:flex;align-items:center;justify-content:center;gap:8px}
+.pg-amount{font-size:34px;font-weight:900;margin:20px 0 4px}
+.spinner{width:56px;height:56px;border-radius:50%;border:5px solid var(--line);border-top-color:var(--green);animation:spin .8s linear infinite;margin:10px auto 14px}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* 주문 완료 */
+.done-ic{width:84px;height:84px;border-radius:50%;background:var(--ball);display:grid;place-items:center;margin:0 auto 18px;animation:pop .6s cubic-bezier(.2,1.5,.4,1)}
+.done-ic svg{width:40px;height:40px}
+.receipt{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px;text-align:left;margin:20px 0}
+.up-banner{background:var(--green);color:#fff;border-radius:14px;padding:14px;margin-bottom:16px;font-weight:700}
+.up-banner b{color:var(--ball)}
+
+/* 마이페이지 */
+.my{--mw:760px}
+.my-hero{background:var(--green);color:#fff;padding:34px;position:relative;overflow:hidden}
+.my-hero::after{content:"";position:absolute;right:-60px;top:-60px;width:260px;height:260px;border-radius:50%;background:url(img/logo-mark.svg) center/cover;opacity:.1}
+.my-top{display:flex;align-items:center;gap:16px;position:relative;z-index:1}
+.my-av{width:64px;height:64px;border-radius:50%;background:var(--ball);color:var(--green);display:grid;place-items:center;font-weight:900;font-size:26px}
+.my-top h3{font-size:22px}
+.gr-pill{display:inline-block;font-size:12px;font-weight:800;letter-spacing:.1em;padding:4px 10px;border-radius:999px;background:var(--ball);color:var(--ink);margin-right:6px}
+.my-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:24px;position:relative;z-index:1}
+.my-stats div{background:rgba(255,255,255,.08);border-radius:14px;padding:14px 16px;font-size:13px;color:rgba(255,255,255,.75)}
+.my-stats b{display:block;font-size:24px;color:#fff;font-weight:900}
+.my-stats .pt b{color:var(--ball)}
+.prog{margin-top:20px;position:relative;z-index:1;font-size:13px}
+.prog .bar{height:10px;border-radius:10px;background:rgba(255,255,255,.15);margin:8px 0 4px;overflow:hidden}
+.prog .bar i{display:block;height:100%;background:var(--ball);border-radius:10px;transition:width 1s}
+.my-tabs{display:flex;gap:4px;padding:0 34px;border-bottom:1px solid var(--line);background:#fff}
+.my-tabs button{padding:16px 14px;font-weight:700;color:var(--muted);border-bottom:3px solid transparent;margin-bottom:-1px}
+.my-tabs button.on{color:var(--ink);border-color:var(--green)}
+.my-body{padding:24px 34px 34px;min-height:240px}
+.ord{border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:12px;background:#fff}
+.ord-h{display:flex;justify-content:space-between;align-items:center;font-size:13px;color:var(--muted);margin-bottom:10px;gap:10px;flex-wrap:wrap}
+.status{font-size:12px;font-weight:800;padding:4px 10px;border-radius:999px;background:var(--green-l);color:var(--green)}
+.status.wait{background:#FFF1D6;color:#9A6200}
+.ord-items{font-size:14px;font-weight:600}
+.ord-f{display:flex;justify-content:space-between;align-items:center;margin-top:10px;font-size:13.5px;flex-wrap:wrap;gap:8px}
+.plog{display:grid;grid-template-columns:1fr auto;gap:4px 12px;padding:13px 0;border-bottom:1px solid var(--line);font-size:14px}
+.plog small{color:var(--muted);font-size:12px}
+.plog .amt{font-weight:800;text-align:right}
+.plog .amt.plus{color:var(--green)}.plog .amt.minus{color:var(--red)}
+
+/* 검색 */
+.search-modal{--mw:640px;top:12vh;transform:translate(-50%,-10px)}
+.search-modal.open{transform:translate(-50%,0)}
+.search-in{display:flex;align-items:center;gap:12px;padding:18px 22px;border-bottom:1px solid var(--line)}
+.search-in svg{width:22px;height:22px;color:var(--muted)}
+.search-in input{flex:1;border:0;outline:none;font-size:19px;background:none;font-weight:600}
+.s-res{max-height:52vh;overflow:auto;padding:8px}
+.s-item{display:grid;grid-template-columns:54px 1fr auto;gap:14px;align-items:center;padding:10px 12px;border-radius:12px;cursor:pointer;width:100%;text-align:left}
+.s-item:hover{background:var(--cream)}
+.s-item img{width:54px;height:54px;border-radius:10px;background:var(--cream)}
+.s-item b{font-size:15px}.s-item small{display:block;color:var(--muted);font-size:12.5px}
+.s-hint{padding:18px 22px;color:var(--muted);font-size:14px}
+.s-hint button{margin:6px 6px 0 0;padding:6px 12px;border-radius:999px;background:var(--cream);font-size:13px;font-weight:600}
+
+/* 토스트 */
+.toasts{position:fixed;z-index:200;left:50%;bottom:28px;transform:translateX(-50%);display:grid;gap:8px;pointer-events:none}
+.toast{background:var(--ink);color:#fff;padding:14px 20px;border-radius:999px;font-size:14px;font-weight:600;box-shadow:var(--shadow-lg);display:flex;align-items:center;gap:10px;animation:toastIn .4s cubic-bezier(.2,1.3,.4,1);white-space:nowrap}
+.toast i{width:22px;height:22px;border-radius:50%;background:var(--ball);color:var(--ink);display:grid;place-items:center;font-style:normal;font-weight:900;font-size:12px}
+.toast.out{animation:toastOut .3s forwards}
+@keyframes toastIn{from{opacity:0;transform:translateY(16px)}}
+@keyframes toastOut{to{opacity:0;transform:translateY(10px)}}
+
+/* 모바일 내비 */
+.mnav{position:fixed;z-index:110;top:0;left:0;bottom:0;width:min(320px,86vw);background:var(--green);color:#fff;transform:translateX(-105%);transition:transform .4s cubic-bezier(.2,.8,.2,1);padding:24px;display:flex;flex-direction:column;gap:4px}
+.mnav.open{transform:none}
+.mnav a{padding:14px 6px;font-size:20px;font-weight:800;border-bottom:1px solid rgba(255,255,255,.1)}
+.mnav .modal-x{position:static;align-self:flex-end;margin-bottom:10px}
+
+/* 스크롤 리빌 */
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .9s,transform .9s cubic-bezier(.2,.7,.2,1)}
+.reveal.in{opacity:1;transform:none}
+
+/* ===== 반응형 ===== */
+@media (max-width:1100px){
+  .nav{display:none}.menu-btn{display:grid}
+  .grid{grid-template-columns:repeat(3,1fr)}
+  .cats{grid-template-columns:repeat(3,1fr)}
+  .strings{grid-template-columns:repeat(3,1fr)}
+  .tiers{grid-template-columns:repeat(2,1fr)}
+  .guide-grid,.tension{grid-template-columns:1fr}
+  .perks .container{grid-template-columns:repeat(2,1fr)}
+  .perk:nth-child(2){border-right:0}
+  .footer-top{grid-template-columns:1fr 1fr}
+}
+@media (max-width:760px){
+  .container{padding:0 18px}
+  section.block{padding:76px 0}
+  .header-in{height:64px;gap:10px}
+  .user-chip .nm,.user-chip .gr{display:none}
+  .user-chip{padding:0 4px;border:0;background:none}
+  .grid{grid-template-columns:repeat(2,1fr);gap:22px 12px}
+  .card-name{font-size:15px}
+  .quick{opacity:1;transform:none;height:38px;font-size:13px;left:8px;right:8px;bottom:8px}
+  .cats{grid-template-columns:repeat(2,1fr)}
+  .strings{grid-template-columns:repeat(2,1fr)}
+  .tiers,.point-rules{grid-template-columns:1fr}
+  .perks .container{grid-template-columns:1fr 1fr}
+  .perk{padding:16px 8px;border:0}
+  .perk small{display:none}
+  .hero-arrows{display:none}
+  .pd,.co{grid-template-columns:1fr}
+  .co-side{border-left:0;border-top:1px solid var(--line)}
+  .pd-info,.co-main,.m-pad{padding:26px 20px}
+  .pay-methods{grid-template-columns:repeat(2,1fr)}
+  .my-stats{grid-template-columns:1fr 1fr 1fr;gap:6px}
+  .my-stats b{font-size:17px}
+  .my-hero,.my-body{padding:24px 20px}.my-tabs{padding:0 20px}
+  .footer-top{grid-template-columns:1fr}
+  .slide-content{padding-bottom:90px}
+  .slide img{object-position:72% center}
+  .slide::after{background:linear-gradient(0deg,rgba(4,22,17,.9) 0%,rgba(4,22,17,.55) 55%,rgba(4,22,17,.25) 100%)}
+}
+@media (prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+</style>
+</head>
+<body>
+
+<!-- 상단 공지 -->
+<div class="topbar" aria-label="공지">
+  <div class="topbar-track" id="marquee">
+    <span>50,000원 이상 구매 시 무료배송</span>
+    <span>신규 회원가입 즉시 3,000P 지급</span>
+    <span>라켓 구매 시 스트링 작업 당일 출고</span>
+    <span>등급별 최대 5% 포인트 적립</span>
+    <span>7일 이내 무료 교환 · 반품</span>
+  </div>
+</div>
+
+<!-- 헤더 -->
+<header class="header" id="header">
+  <div class="container header-in">
+    <button class="icon-btn menu-btn" id="menuBtn" aria-label="메뉴 열기">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h10"/></svg>
+    </button>
+    <a href="#top" class="logo" aria-label="COURTSIDE 홈"><img src="img/logo-mark.svg" alt=""><b>COURTSIDE</b></a>
+    <nav class="nav" aria-label="주요 메뉴">
+      <a href="#shop" data-cat="racket">라켓</a>
+      <a href="#shop" data-cat="string">스트링</a>
+      <a href="#shop" data-cat="ball">볼</a>
+      <a href="#shop" data-cat="shoe">슈즈</a>
+      <a href="#shop" data-cat="acc">가방·액세서리</a>
+      <a href="#lab">스트링 랩</a>
+      <a href="#membership">멤버십</a>
+    </nav>
+    <div class="header-actions">
+      <button class="icon-btn" id="searchBtn" aria-label="검색">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      </button>
+      <span id="userSlot"></span>
+      <button class="icon-btn" id="cartBtn" aria-label="장바구니">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 8h14l-1.2 11.2a2 2 0 0 1-2 1.8H8.2a2 2 0 0 1-2-1.8L5 8Z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
+        <span class="badge-count" id="cartCount">0</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+<!-- 히어로 -->
+<section class="hero" id="hero" aria-roledescription="carousel" aria-label="메인 배너">
+  <div class="slide active" data-i="0">
+    <img src="img/hero-1.svg" alt="하드코트 위에 놓인 파란 라켓과 테니스공">
+    <div class="slide-content">
+      <span class="slide-tag">NEW SEASON · 라켓 최대 12% OFF</span>
+      <h1 class="display">Hit <em>Different.</em></h1>
+      <p>VELOCITY 100 출시. 300g의 안정감에 빠른 스윙 스피드까지 — 이번 시즌 첫 라켓으로 시작해보세요.</p>
+      <div class="slide-cta"><button class="btn btn-ball" data-go="racket">라켓 보러가기 →</button><a class="btn btn-ghost" href="#finder">내 라켓 찾기</a></div>
+    </div>
+  </div>
+  <div class="slide" data-i="1">
+    <img src="img/hero-2.svg" alt="해 질 녘 클레이 코트에서 서브하는 선수 실루엣">
+    <div class="slide-content">
+      <span class="slide-tag">CLAY SEASON</span>
+      <h2 class="display">Own the <em>Clay.</em></h2>
+      <p>미끄러짐을 잡아주는 헤링본 아웃솔 슈즈와 스핀이 살아나는 각형 폴리 스트링을 함께 준비했어요.</p>
+      <div class="slide-cta"><button class="btn btn-ball" data-go="shoe">슈즈 보러가기 →</button><button class="btn btn-ghost" data-go="string">스핀 스트링</button></div>
+    </div>
+  </div>
+  <div class="slide" data-i="2">
+    <img src="img/hero-3.svg" alt="스트링 베드에 공이 부딪히는 순간의 근접 일러스트">
+    <div class="slide-content">
+      <span class="slide-tag">STRING LAB</span>
+      <h2 class="display">Feel the <em>String.</em></h2>
+      <p>같은 라켓도 스트링과 텐션에 따라 전혀 다른 타구감이 됩니다. 5가지 스트링을 비교하고 내 텐션을 찾아보세요.</p>
+      <div class="slide-cta"><a class="btn btn-ball" href="#lab">스트링 비교하기 →</a><button class="btn btn-ghost" data-go="string">스트링 쇼핑</button></div>
+    </div>
+  </div>
+  <div class="slide" data-i="3">
+    <img src="img/hero-4.svg" alt="조명이 켜진 야간 잔디 코트와 흩어진 테니스공">
+    <div class="slide-content">
+      <span class="slide-tag">BALL DEAL · 박스 구매 특가</span>
+      <h2 class="display">Night <em>Match.</em></h2>
+      <p>대회 공인 규격 CHAMP 토너먼트 볼. 24캔 박스로 구매하면 캔당 7,875원.</p>
+      <div class="slide-cta"><button class="btn btn-ball" data-go="ball">볼 구매하기 →</button></div>
+    </div>
+  </div>
+  <div class="slide" data-i="4">
+    <img src="img/hero-5.svg" alt="라켓, 라켓백, 테니스공이 놓인 플랫레이">
+    <div class="slide-content">
+      <span class="slide-tag">MEMBERSHIP</span>
+      <h2 class="display">Road to <em>Grand Slam.</em></h2>
+      <p>가입 즉시 3,000P. 구매할수록 등급이 오르고, 그랜드슬램 등급은 5% 적립 + 스트링 작업비 무료.</p>
+      <div class="slide-cta"><button class="btn btn-ball" data-auth="signup">회원가입하고 3,000P 받기 →</button><a class="btn btn-ghost" href="#membership">등급 혜택 보기</a></div>
+    </div>
+  </div>
+
+  <div class="hero-ui">
+    <div class="container">
+      <div class="hero-count"><b id="heroCur">01</b> / <span id="heroTotal">05</span></div>
+      <div class="dots" id="dots"></div>
+      <div class="hero-arrows">
+        <button id="prevSlide" aria-label="이전 슬라이드"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M15 6l-6 6 6 6"/></svg></button>
+        <button id="nextSlide" aria-label="다음 슬라이드"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M9 6l6 6-6 6"/></svg></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 혜택 -->
+<div class="perks">
+  <div class="container">
+    <div class="perk"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7"/><circle cx="7" cy="18" r="2"/><circle cx="17" cy="18" r="2"/></svg></div><div><b>5만원↑ 무료배송</b><small>오후 2시 전 주문 당일 출고</small></div></div>
+    <div class="perk"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><ellipse cx="10" cy="9" rx="6" ry="7"/><path d="M6 6h8M5 9h10M6 12h8M8 3v12M12 3v12M14 15l5 6"/></svg></div><div><b>전문 스트링 작업</b><small>원하는 텐션으로 장착 후 출고</small></div></div>
+    <div class="perk"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M9 16V8h4a2.5 2.5 0 0 1 0 5H9"/></svg></div><div><b>최대 5% 적립</b><small>등급별 차등 포인트 지급</small></div></div>
+    <div class="perk"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg></div><div><b>7일 무료 반품</b><small>미사용 상품 교환 · 반품</small></div></div>
+  </div>
+</div>
+
+<!-- 카테고리 -->
+<section class="block" id="categories">
+  <div class="container">
+    <div class="sec-head reveal">
+      <div><span class="eyebrow">Shop by Category</span><h2 class="display">Gear Up</h2></div>
+      <p>라켓부터 스트링, 볼, 슈즈까지. 코트에 필요한 모든 것을 카테고리별로 둘러보세요.</p>
+    </div>
+    <div class="cats reveal" id="cats"></div>
+  </div>
+</section>
+
+<!-- 상품 -->
+<section class="block" id="shop" style="padding-top:0">
+  <div class="container">
+    <div class="sec-head reveal">
+      <div><span class="eyebrow">Shop All</span><h2 class="display">Pro Shop</h2></div>
+      <p>COURTSIDE가 직접 테스트하고 고른 장비. 표시된 적립 포인트는 내 등급 기준이에요.</p>
+    </div>
+    <div class="shop-bar">
+      <div class="tabs" id="tabs" role="tablist"></div>
+      <select class="sort" id="sort" aria-label="정렬">
+        <option value="reco">추천순</option>
+        <option value="low">낮은 가격순</option>
+        <option value="high">높은 가격순</option>
+        <option value="sale">할인율순</option>
+      </select>
+    </div>
+    <div class="grid" id="grid"></div>
+  </div>
+</section>
+
+<!-- 라켓 가이드 -->
+<section class="block guide" id="finder">
+  <div class="container">
+    <div class="sec-head reveal">
+      <div><span class="eyebrow">Racket Guide</span><h2 class="display">Find Your Frame</h2></div>
+      <p>숫자 세 개만 알면 라켓이 보입니다. 헤드 사이즈, 무게, 밸런스를 이해하고 나에게 맞는 라켓을 찾아보세요.</p>
+    </div>
+    <div class="guide-grid">
+      <div class="spec-cards reveal">
+        <div class="spec"><div class="num">01</div><div><h3>헤드 사이즈 (sq.in)</h3><p>면이 클수록 스위트스폿이 넓어 실수가 줄고 파워가 커져요. 작을수록 정교한 컨트롤이 가능해요.</p><div class="scale"><span>97 · 컨트롤</span><span>100 · 밸런스</span><span>105+ · 관용성</span></div><div class="scale-bar"></div></div></div>
+        <div class="spec"><div class="num">02</div><div><h3>무게 (g, 스트링 제외)</h3><p>무거울수록 공을 받아칠 때 안정적이고, 가벼울수록 휘두르기 쉬워요. 입문자는 260~285g을 추천해요.</p><div class="scale"><span>260g · 가벼움</span><span>300g</span><span>315g+ · 묵직함</span></div><div class="scale-bar"></div></div></div>
+        <div class="spec"><div class="num">03</div><div><h3>밸런스 (mm)</h3><p>숫자가 클수록 헤드 쪽이 무거워 파워가 실리고(헤드 헤비), 작을수록 조작이 빨라요(헤드 라이트).</p><div class="scale"><span>310 · 헤드 라이트</span><span>320</span><span>340 · 헤드 헤비</span></div><div class="scale-bar"></div></div></div>
+      </div>
+      <div class="finder reveal">
+        <span class="eyebrow" style="color:var(--ball)">Racket Finder</span>
+        <h3 class="display">3초 라켓 추천</h3>
+        <p>세 가지 질문에 답하면 COURTSIDE 라켓 중에서 골라드려요.</p>
+        <div class="q" data-q="level"><b>1. 테니스 구력은?</b><div class="opts">
+          <button class="opt" data-v="junior">주니어</button><button class="opt" data-v="beginner">1년 미만</button><button class="opt" data-v="mid">1~3년</button><button class="opt" data-v="adv">3년 이상</button></div></div>
+        <div class="q" data-q="style"><b>2. 가장 원하는 건?</b><div class="opts">
+          <button class="opt" data-v="power">쉬운 파워</button><button class="opt" data-v="spin">강한 스핀</button><button class="opt" data-v="control">정교한 컨트롤</button><button class="opt" data-v="all">밸런스</button></div></div>
+        <div class="q" data-q="swing"><b>3. 내 스윙은?</b><div class="opts">
+          <button class="opt" data-v="short">짧고 간결</button><button class="opt" data-v="normal">보통</button><button class="opt" data-v="long">길고 빠름</button></div></div>
+        <div class="finder-result" id="finderResult"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 스트링 랩 -->
+<section class="block lab" id="lab">
+  <div class="container">
+    <div class="sec-head reveal">
+      <div><span class="eyebrow">String Lab</span><h2 class="display">Tune Your Feel</h2></div>
+      <p>스트링은 라켓의 엔진이에요. 소재에 따라 파워·스핀·내구성이 달라지니 플레이 스타일에 맞춰 고르세요.</p>
+    </div>
+    <div class="strings" id="strings"></div>
+    <div class="tension">
+      <div class="t-panel reveal">
+        <h3>텐션 시뮬레이터</h3>
+        <p>슬라이더를 움직여 텐션(lbs)에 따라 타구감이 어떻게 달라지는지 확인해보세요.</p>
+        <div class="t-val"><b id="tVal">52</b><span>lbs · <span id="tKg">23.6</span>kg</span></div>
+        <input type="range" id="tRange" min="40" max="62" step="1" value="52" aria-label="스트링 텐션">
+        <div class="t-scale"><span>40 · 루즈</span><span>51</span><span>62 · 타이트</span></div>
+        <div class="t-feel">
+          <div>파워 · 반발력<b id="tPow">보통</b></div>
+          <div>컨트롤 · 정확도<b id="tCtl">보통</b></div>
+        </div>
+        <div class="t-tip" id="tTip"></div>
+      </div>
+      <div class="svc reveal">
+        <img src="img/stringing.svg" alt="스트링 머신에 고정된 라켓 일러스트">
+        <div>
+          <h3>COURTSIDE 스트링 작업</h3>
+          <ul>
+            <li>전자식 스트링 머신, 10년 경력 스트링어</li>
+            <li>40~62 lbs 원하는 텐션으로 장착</li>
+            <li>작업비 15,000원 · RALLY 50% · ACE 이상 무료</li>
+          </ul>
+          <button class="btn btn-ball btn-block" data-go="racket">라켓 + 스트링 작업 주문하기</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 멤버십 -->
+<section class="block" id="membership">
+  <div class="container">
+    <div class="sec-head reveal">
+      <div><span class="eyebrow">Membership</span><h2 class="display">Level Up Your Game</h2></div>
+      <p>누적 구매금액에 따라 등급이 자동으로 올라가요. 등급이 높을수록 적립률과 혜택이 커집니다.</p>
+    </div>
+    <div class="tiers reveal" id="tiers"></div>
+    <div class="point-rules reveal">
+      <div><b>포인트 적립</b>결제 완료 시 상품 결제금액(포인트 사용분·배송비 제외)의 등급별 비율로 적립돼요.</div>
+      <div><b>포인트 사용</b>1,000P 이상 보유 시 1P = 1원으로 결제 금액 전액까지 사용할 수 있어요.</div>
+      <div><b>등급 산정</b>결제가 완료될 때마다 누적 구매금액을 반영해 즉시 등급이 갱신돼요.</div>
+    </div>
+    <div class="member-cta reveal" id="memberCta"></div>
+  </div>
+</section>
+</main>
+
+<!-- 푸터 -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-top">
+      <div>
+        <a href="#top" class="logo"><img src="img/logo-mark.svg" alt=""><b>COURTSIDE</b></a>
+        <p style="margin-top:14px;max-width:320px">코트 위의 모든 순간을 위한 테니스 전문 편집숍. 라켓, 스트링, 그리고 당신의 다음 포인트.</p>
+        <form class="news" id="newsForm"><input type="email" placeholder="이메일로 신상품 소식 받기" aria-label="뉴스레터 이메일" required><button class="btn btn-ball btn-sm" style="height:46px">구독</button></form>
+      </div>
+      <div><h4>쇼핑</h4><ul><li><a href="#shop" data-cat="racket">라켓</a></li><li><a href="#shop" data-cat="string">스트링</a></li><li><a href="#shop" data-cat="ball">볼</a></li><li><a href="#shop" data-cat="shoe">슈즈</a></li><li><a href="#shop" data-cat="acc">가방·액세서리</a></li></ul></div>
+      <div><h4>고객 서비스</h4><ul><li><a href="#lab">스트링 작업 안내</a></li><li><a href="#membership">멤버십 · 포인트</a></li><li><a href="#" data-my>주문 · 배송 조회</a></li><li><a href="#">교환 · 반품 안내</a></li><li><a href="#">자주 묻는 질문</a></li></ul></div>
+      <div><h4>고객센터</h4><div class="cs-num">1600-0000</div><p>평일 10:00 – 18:00<br>점심 12:30 – 13:30 · 주말/공휴일 휴무</p></div>
+    </div>
+    <div class="biz">
+      상호: (주)코트사이드 &nbsp;|&nbsp; 대표: 홍길동 &nbsp;|&nbsp; 사업자등록번호: 000-00-00000 &nbsp;|&nbsp; 통신판매업신고: 제0000-서울-0000호<br>
+      주소: 서울특별시 ○○구 ○○로 00 &nbsp;|&nbsp; 개인정보보호책임자: 홍길동 &nbsp;|&nbsp; 이메일: help@courtside.example<br>
+      © 2026 COURTSIDE. All rights reserved. · 이용약관 · <b>개인정보처리방침</b>
+    </div>
+    <div class="biz-big">COURTSIDE</div>
+  </div>
+</footer>
+
+<!-- ===== 오버레이 & 모달 ===== -->
+<div class="overlay" id="overlay"></div>
+
+<!-- 모바일 메뉴 -->
+<nav class="mnav" id="mnav" aria-label="모바일 메뉴">
+  <button class="modal-x" data-close aria-label="닫기"><svg viewBox="0 0 24 24" fill="none" stroke="#0E1A15" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+  <a href="#shop" data-cat="racket">라켓</a><a href="#shop" data-cat="string">스트링</a><a href="#shop" data-cat="ball">볼</a><a href="#shop" data-cat="shoe">슈즈</a><a href="#shop" data-cat="acc">가방·액세서리</a><a href="#lab">스트링 랩</a><a href="#membership">멤버십</a>
+</nav>
+
+<!-- 로그인/회원가입 -->
+<div class="modal" id="authModal" role="dialog" aria-modal="true" aria-labelledby="authTitle" style="--mw:460px">
+  <button class="modal-x" data-close aria-label="닫기"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+  <div class="m-pad">
+    <h2 class="m-title" id="authTitle">COURTSIDE 멤버십</h2>
+    <p class="m-sub" id="authSub">로그인하고 등급별 포인트 혜택을 받으세요.</p>
+    <div class="auth-tabs"><button data-atab="login" class="on">로그인</button><button data-atab="signup">회원가입</button></div>
+
+    <form id="loginForm" novalidate>
+      <div class="field"><label for="lEmail">이메일</label><input class="inp" id="lEmail" type="email" autocomplete="email" placeholder="you@example.com"></div>
+      <div class="field"><label for="lPw">비밀번호</label><input class="inp" id="lPw" type="password" autocomplete="current-password" placeholder="비밀번호"></div>
+      <p class="err-msg" id="loginErr"></p>
+      <button class="btn btn-primary btn-block" style="margin-top:8px">로그인</button>
+      <p class="auth-note">아직 회원이 아니신가요? <a href="#" data-atab="signup" style="color:var(--green);font-weight:700">회원가입하고 3,000P 받기</a></p>
+    </form>
+
+    <form id="signupForm" novalidate hidden>
+      <div class="welcome-box"><b>+3,000P</b><span>가입 즉시 웰컴 포인트가 지급되고<br>ROOKIE 등급(1% 적립)으로 시작해요.</span></div>
+      <div class="field"><label for="sName">이름 <i>*</i></label><input class="inp" id="sName" autocomplete="name" placeholder="홍길동"></div>
+      <div class="field"><label for="sEmail">이메일 <i>*</i></label><input class="inp" id="sEmail" type="email" autocomplete="email" placeholder="you@example.com"></div>
+      <div class="row2">
+        <div class="field"><label for="sPw">비밀번호 <i>*</i></label><input class="inp" id="sPw" type="password" autocomplete="new-password" placeholder="8자 이상, 영문+숫자"></div>
+        <div class="field"><label for="sPw2">비밀번호 확인 <i>*</i></label><input class="inp" id="sPw2" type="password" autocomplete="new-password" placeholder="한 번 더"></div>
+      </div>
+      <div class="field"><label for="sPhone">휴대폰 번호 <i>*</i></label><input class="inp" id="sPhone" inputmode="numeric" autocomplete="tel" placeholder="010-0000-0000"></div>
+      <label class="check"><input type="checkbox" id="sAll"><b>전체 동의</b></label>
+      <label class="check"><input type="checkbox" class="agree" id="sTerms" data-req>[필수] 이용약관 동의</label>
+      <label class="check"><input type="checkbox" class="agree" id="sPriv" data-req>[필수] 개인정보 수집 · 이용 동의</label>
+      <label class="check"><input type="checkbox" class="agree" id="sMkt">[선택] 할인 · 이벤트 소식 수신</label>
+      <p class="err-msg" id="signupErr"></p>
+      <button class="btn btn-primary btn-block" style="margin-top:10px">가입하고 3,000P 받기</button>
+    </form>
+  </div>
+</div>
+
+<!-- 상품 상세 -->
+<div class="modal" id="pdModal" role="dialog" aria-modal="true" aria-label="상품 상세" style="--mw:980px">
+  <button class="modal-x" data-close aria-label="닫기"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+  <div id="pdBody"></div>
+</div>
+
+<!-- 장바구니 -->
+<aside class="drawer" id="cartDrawer" aria-label="장바구니">
+  <div class="drawer-head"><h3>장바구니 <span id="cartHeadCount" style="color:var(--muted);font-weight:600"></span></h3>
+    <button class="modal-x" data-close aria-label="닫기"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>
+  <div class="drawer-body" id="cartBody"></div>
+  <div class="drawer-foot" id="cartFoot"></div>
+</aside>
+
+<!-- 결제 -->
+<div class="modal" id="coModal" role="dialog" aria-modal="true" aria-label="주문 · 결제" style="--mw:1040px">
+  <button class="modal-x" data-close aria-label="닫기"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+  <div id="coBody"></div>
+</div>
+
+<!-- 가상 결제창 -->
+<div class="modal pg" id="pgModal" role="dialog" aria-modal="true" aria-label="결제창"><div id="pgBody"></div></div>
+
+<!-- 주문 완료 -->
+<div class="modal" id="doneModal" role="dialog" aria-modal="true" aria-label="주문 완료" style="--mw:460px"><div class="m-pad" id="doneBody" style="text-align:center"></div></div>
+
+<!-- 마이페이지 -->
+<div class="modal my" id="myModal" role="dialog" aria-modal="true" aria-label="마이페이지">
+  <button class="modal-x" data-close aria-label="닫기"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+  <div id="myBody"></div>
+</div>
+
+<!-- 검색 -->
+<div class="modal search-modal" id="searchModal" role="dialog" aria-modal="true" aria-label="상품 검색">
+  <div class="search-in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+    <input id="searchInput" placeholder="라켓, 스트링, 브랜드를 검색해보세요" aria-label="검색어"><button data-close class="btn btn-sm btn-line">닫기</button></div>
+  <div class="s-res" id="searchRes"></div>
+</div>
+
+<div class="toasts" id="toasts" aria-live="polite"></div>
+
+<script>
+/* =========================================================
+   COURTSIDE — 쇼핑몰 스크립트
+   * 데이터는 브라우저 localStorage에 저장되는 데모 구조입니다.
+   * 실제 운영 시: 회원·주문·포인트는 서버 DB로, 결제는 PG(토스페이먼츠·포트원 등) SDK로 교체하세요.
+   ========================================================= */
+(() => {
+'use strict';
+const $ = (s, el = document) => el.querySelector(s);
+const $$ = (s, el = document) => [...el.querySelectorAll(s)];
+const won = n => Math.round(n).toLocaleString('ko-KR') + '원';
+const pt = n => Math.round(n).toLocaleString('ko-KR') + 'P';
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const today = () => { const d = new Date(); return `${d.getFullYear()}.${String(d.getMonth()+1).padStart(2,'0')}.${String(d.getDate()).padStart(2,'0')}`; };
+
+/* ---------- 정책 ---------- */
+const FREE_SHIP = 50000, SHIP_FEE = 3000, LABOR = 15000, WELCOME = 3000, MIN_USE = 1000;
+const GRADES = [
+  { id:'ROOKIE',     ko:'루키',     min:0,       rate:.01, labor:1,  freeShip:false, color:'#E4EEE8', fg:'#0B4F3C',
+    perks:['구매 금액 1% 적립','가입 즉시 3,000P 지급','5만원 이상 무료배송'] },
+  { id:'RALLY',      ko:'랠리',     min:300000,  rate:.02, labor:.5, freeShip:false, color:'#D9F24A', fg:'#0E1A15',
+    perks:['구매 금액 2% 적립','스트링 작업비 50% 할인','5만원 이상 무료배송'] },
+  { id:'ACE',        ko:'에이스',   min:1000000, rate:.03, labor:0,  freeShip:true,  color:'#0B4F3C', fg:'#D9F24A',
+    perks:['구매 금액 3% 적립','스트링 작업비 무료','금액 상관없이 무료배송'] },
+  { id:'GRAND SLAM', ko:'그랜드슬램', min:3000000, rate:.05, labor:0,  freeShip:true,  color:'#D9F24A', fg:'#0B4F3C',
+    perks:['구매 금액 5% 적립','스트링 작업비 무료 · 무료배송','신제품 시타 라켓 우선 대여'] },
+];
+const gradeFor = spent => [...GRADES].reverse().find(g => spent >= g.min);
+const nextGrade = g => GRADES[GRADES.indexOf(g) + 1] || null;
+
+/* ---------- 상품 데이터 ---------- */
+const CATS = [
+  { id:'racket', ko:'라켓',     img:'img/racket-velocity.svg' },
+  { id:'string', ko:'스트링',   img:'img/string-hexabite.svg' },
+  { id:'ball',   ko:'볼',       img:'img/ball-champion.svg' },
+  { id:'bag',    ko:'가방',     img:'img/bag-tour12.svg' },
+  { id:'shoe',   ko:'슈즈',     img:'img/shoe-clay.svg' },
+  { id:'acc',    ko:'액세서리', img:'img/acc-overgrip.svg' },
+];
+const GRIP = { name:'grip', label:'그립 사이즈', values:[{l:'G1 (4 1/8)'},{l:'G2 (4 1/4)'},{l:'G3 (4 3/8)'}] };
+const P = [
+  { id:'velocity', cat:'racket', brand:'AXIS', name:'VELOCITY 100', price:289000, list:329000, img:'racket-velocity', flags:['best','sale'], tags:['300g','100sq.in','16×19'],
+    fit:{ level:['mid','adv'], style:['all','power','spin'], swing:['normal','long'] }, stringable:true,
+    desc:'빠른 스윙 스피드와 안정감을 동시에 잡은 올라운드 라켓. 처음 300g대로 넘어가는 중급자에게 가장 많이 추천하는 모델이에요.',
+    specs:{ '헤드 사이즈':'100 sq.in','무게(언스트링)':'300g','밸런스':'320mm','스트링 패턴':'16 × 19','길이':'27 in','강성(RA)':'66' }, options:[GRIP] },
+  { id:'control', cat:'racket', brand:'VANTA', name:'CONTROL TOUR 97', price:319000, list:319000, img:'racket-control', flags:[], tags:['315g','97sq.in','16×19'],
+    fit:{ level:['adv'], style:['control'], swing:['long'] }, stringable:true,
+    desc:'작은 헤드와 묵직한 무게로 원하는 곳에 정확히 꽂아 넣는 투어형 라켓. 스윙이 크고 빠른 상급자를 위한 선택.',
+    specs:{ '헤드 사이즈':'97 sq.in','무게(언스트링)':'315g','밸런스':'310mm','스트링 패턴':'16 × 19','길이':'27 in','강성(RA)':'62' }, options:[GRIP] },
+  { id:'powerlite', cat:'racket', brand:'LUMEN', name:'POWER LITE 105', price:229000, list:259000, img:'racket-powerlite', flags:['sale'], tags:['270g','105sq.in','입문 추천'],
+    fit:{ level:['beginner','mid'], style:['power','all'], swing:['short','normal'] }, stringable:true,
+    desc:'가볍고 넓은 면으로 힘들이지 않아도 공이 쭉 뻗어요. 테니스를 막 시작했거나 짧은 스윙을 가진 분께 추천.',
+    specs:{ '헤드 사이즈':'105 sq.in','무게(언스트링)':'270g','밸런스':'340mm','스트링 패턴':'16 × 18','길이':'27.25 in','강성(RA)':'68' }, options:[GRIP] },
+  { id:'spinmaster', cat:'racket', brand:'KORA', name:'SPIN MASTER 100', price:279000, list:279000, img:'racket-spinmaster', flags:['new'], tags:['300g','100sq.in','스핀 특화'],
+    fit:{ level:['mid','adv'], style:['spin','power'], swing:['normal','long'] }, stringable:true,
+    desc:'오픈 패턴과 공기역학 프레임으로 회전량을 극대화했어요. 탑스핀으로 랠리를 지배하고 싶은 베이스라이너에게.',
+    specs:{ '헤드 사이즈':'100 sq.in','무게(언스트링)':'300g','밸런스':'325mm','스트링 패턴':'16 × 19','길이':'27 in','강성(RA)':'67' }, options:[GRIP] },
+  { id:'junior', cat:'racket', brand:'MINI ACE', name:'JUNIOR ACE 25', price:119000, list:119000, img:'racket-junior', flags:[], tags:['240g','25인치','9~10세'],
+    fit:{ level:['junior'], style:['all','power','spin','control'], swing:['short','normal','long'] }, stringable:true,
+    desc:'성인 라켓과 같은 그라파이트 소재를 쓴 25인치 주니어 라켓. 키 130~145cm 어린이에게 맞아요.',
+    specs:{ '헤드 사이즈':'100 sq.in','무게':'240g','길이':'25 in','추천 신장':'130 – 145cm','소재':'그라파이트' }, options:[{name:'grip',label:'그립 사이즈',values:[{l:'G0 (4)'}]}] },
+  { id:'classic', cat:'racket', brand:'HERITAGE', name:'CLASSIC 98', price:299000, list:299000, img:'racket-classic', flags:['new'], tags:['305g','98sq.in','18×20'],
+    fit:{ level:['mid','adv'], style:['control','all'], swing:['normal','long'] }, stringable:true,
+    desc:'촘촘한 18×20 패턴과 부드러운 타구감. 플랫 드라이브와 발리를 즐기는 클래식 스타일 플레이어를 위한 라켓.',
+    specs:{ '헤드 사이즈':'98 sq.in','무게(언스트링)':'305g','밸런스':'315mm','스트링 패턴':'18 × 20','길이':'27 in','강성(RA)':'63' }, options:[GRIP] },
+
+  { id:'polyspin', cat:'string', brand:'COURTSIDE', name:'POLY SPIN 1.25', price:22000, list:22000, img:'string-polyspin', flags:['best'], tags:['코폴리','1.25mm'], type:'코폴리에스터',
+    meters:{ 파워:45, 스핀:85, 컨트롤:90, 내구성:90, 편안함:40 }, tension:'46 – 52 lbs',
+    desc:'단단한 코폴리 스트링. 강하게 휘둘러도 공이 날아가지 않고 스냅백으로 스핀이 살아나요.',
+    specs:{ '소재':'코폴리에스터','게이지':'1.25mm (17)','권장 텐션':'46 – 52 lbs','추천':'중급 이상 · 하드히터' },
+    options:[{name:'pack',label:'포장 단위',values:[{l:'세트 (12m)'},{l:'릴 (200m)',add:167000}]}] },
+  { id:'multifeel', cat:'string', brand:'COURTSIDE', name:'MULTI FEEL 1.30', price:28000, list:28000, img:'string-multifeel', flags:[], tags:['멀티필라멘트','1.30mm'], type:'멀티필라멘트',
+    meters:{ 파워:85, 스핀:50, 컨트롤:60, 내구성:45, 편안함:90 }, tension:'50 – 56 lbs',
+    desc:'수천 가닥의 미세 섬유를 꼬아 만든 부드러운 스트링. 팔꿈치가 걱정되거나 편안한 타구감을 원한다면.',
+    specs:{ '소재':'멀티필라멘트','게이지':'1.30mm (16)','권장 텐션':'50 – 56 lbs','추천':'입문~중급 · 엘보 걱정' },
+    options:[{name:'pack',label:'포장 단위',values:[{l:'세트 (12m)'},{l:'릴 (200m)',add:211000}]}] },
+  { id:'gut', cat:'string', brand:'COURTSIDE', name:'NATURAL GUT 1.30', price:59000, list:65000, img:'string-gut', flags:['sale'], tags:['내추럴 거트','1.30mm'], type:'내추럴 거트',
+    meters:{ 파워:95, 스핀:60, 컨트롤:70, 내구성:35, 편안함:100 }, tension:'52 – 60 lbs',
+    desc:'최고의 반발력과 텐션 유지력. 한 번 쳐보면 잊을 수 없는 타구감의 프리미엄 스트링이에요.',
+    specs:{ '소재':'천연 소장 거트','게이지':'1.30mm (16)','권장 텐션':'52 – 60 lbs','추천':'타구감 최우선 플레이어' },
+    options:[{name:'pack',label:'포장 단위',values:[{l:'세트 (12m)'}]}] },
+  { id:'synthetic', cat:'string', brand:'COURTSIDE', name:'SYNTHETIC GUT 1.30', price:9000, list:9000, img:'string-synthetic', flags:[], tags:['신세틱','1.30mm','가성비'], type:'신세틱 거트',
+    meters:{ 파워:70, 스핀:55, 컨트롤:65, 내구성:65, 편안함:70 }, tension:'50 – 58 lbs',
+    desc:'모든 면에서 무난한 기본 스트링. 처음 줄을 갈아보는 분이나 자주 교체하는 분께 부담 없는 가격.',
+    specs:{ '소재':'나일론 솔리드 코어','게이지':'1.30mm (16)','권장 텐션':'50 – 58 lbs','추천':'입문 · 레슨용' },
+    options:[{name:'pack',label:'포장 단위',values:[{l:'세트 (12m)'},{l:'릴 (200m)',add:70000}]}] },
+  { id:'hexabite', cat:'string', brand:'COURTSIDE', name:'HEXA BITE 1.20', price:24000, list:24000, img:'string-hexabite', flags:['new'], tags:['6각 폴리','1.20mm'], type:'각형 폴리',
+    meters:{ 파워:55, 스핀:100, 컨트롤:85, 내구성:75, 편안함:50 }, tension:'45 – 51 lbs',
+    desc:'육각 단면이 공을 물어 회전을 걸어주는 스핀 특화 스트링. 얇은 1.20 게이지로 반발력도 챙겼어요.',
+    specs:{ '소재':'각형 코폴리에스터','게이지':'1.20mm (18)','권장 텐션':'45 – 51 lbs','추천':'스핀 위주 베이스라이너' },
+    options:[{name:'pack',label:'포장 단위',values:[{l:'세트 (12m)'},{l:'릴 (200m)',add:175000}]}] },
+
+  { id:'champ', cat:'ball', brand:'CHAMP', name:'TOURNAMENT 볼 4구', price:8500, list:8500, img:'ball-champion', flags:['best'], tags:['대회구','압력구'],
+    desc:'국제 규격을 충족하는 대회용 압력구. 하드·클레이 모두 일정한 바운스를 보여줘요.',
+    specs:{ '구성':'1캔 4구','타입':'압력구 (대회용)','코트':'올코트' }, options:[{name:'pack',label:'구매 단위',values:[{l:'1캔 (4구)'},{l:'1박스 (24캔)',add:180500}]}] },
+  { id:'practice', cat:'ball', brand:'CHAMP', name:'연습용 무압구 12개', price:24000, list:28000, img:'ball-practice', flags:['sale'], tags:['무압구','레슨·볼머신'],
+    desc:'압력이 빠지지 않아 오래 쓰는 무압구. 레슨, 볼머신, 벽치기용으로 좋아요.',
+    specs:{ '구성':'12구 + 메쉬백','타입':'무압구','추천':'레슨 · 볼머신' }, options:[] },
+
+  { id:'tour12', cat:'bag', brand:'COURTSIDE', name:'TOUR 12 라켓백', price:129000, list:149000, img:'bag-tour12', flags:['sale'], tags:['라켓 12자루','보온 칸'],
+    desc:'라켓 최대 12자루, 열·습기로부터 스트링을 지키는 써멀 포켓, 분리형 슈즈 칸까지.',
+    specs:{ '수납':'라켓 최대 12자루','크기':'78 × 34 × 32 cm','특징':'써멀 포켓 · 슈즈 칸' }, options:[] },
+  { id:'backpack', cat:'bag', brand:'COURTSIDE', name:'COURT 백팩', price:89000, list:89000, img:'bag-backpack', flags:[], tags:['라켓 2자루','노트북 칸'],
+    desc:'출근길에도 코트에도. 라켓 2자루와 15인치 노트북이 함께 들어가는 데일리 백팩.',
+    specs:{ '수납':'라켓 2자루 · 15" 노트북','크기':'48 × 32 × 18 cm' }, options:[] },
+
+  { id:'allcourt', cat:'shoe', brand:'COURTSIDE', name:'ALL COURT 슈즈', price:129000, list:139000, img:'shoe-allcourt', flags:['sale'], tags:['올코트','와이드'],
+    desc:'하드코트에서도 미끄러지지 않는 접지력과 발볼 넓은 한국인 발에 맞춘 와이드 라스트.',
+    specs:{ '아웃솔':'올코트 패턴','발볼':'와이드 (2E)','무게':'약 360g (270mm)' }, options:[{name:'size',label:'사이즈',values:[230,240,250,255,260,265,270,275,280,290].map(v=>({l:v+'mm'}))}] },
+  { id:'clay', cat:'shoe', brand:'COURTSIDE', name:'CLAY GRIP 슈즈', price:139000, list:139000, img:'shoe-clay', flags:['new'], tags:['클레이 전용','헤링본'],
+    desc:'헤링본 아웃솔이 클레이를 단단히 잡아 슬라이딩 후 빠른 리커버리를 도와줘요.',
+    specs:{ '아웃솔':'풀 헤링본','발볼':'레귤러 (D)','무게':'약 375g (270mm)' }, options:[{name:'size',label:'사이즈',values:[230,240,250,255,260,265,270,275,280,290].map(v=>({l:v+'mm'}))}] },
+
+  { id:'overgrip', cat:'acc', brand:'COURTSIDE', name:'드라이 오버그립 3개입', price:9900, list:9900, img:'acc-overgrip', flags:['best'], tags:['0.5mm','땀 흡수'],
+    desc:'얇고 끈적임 적은 드라이 타입. 손에 땀이 많은 분께 추천해요.',
+    specs:{ '두께':'0.5mm','구성':'3개입','타입':'드라이' }, options:[{name:'color',label:'색상',values:[{l:'화이트'},{l:'옐로'},{l:'블랙'}]}] },
+  { id:'dampener', cat:'acc', brand:'COURTSIDE', name:'진동 댐프너 2개입', price:6000, list:6000, img:'acc-dampener', flags:[], tags:['실리콘','진동 흡수'],
+    desc:'타구 시 울리는 진동음을 줄여주는 실리콘 댐프너.',
+    specs:{ '소재':'실리콘','구성':'2개입' }, options:[{name:'color',label:'색상',values:[{l:'옐로 + 그린'},{l:'레드 + 그린'}]}] },
+  { id:'wristband', cat:'acc', brand:'COURTSIDE', name:'코튼 손목밴드 2개입', price:12000, list:12000, img:'acc-wristband', flags:[], tags:['코튼','땀 흡수'],
+    desc:'두툼한 코튼 테리 원단으로 땀을 빠르게 흡수해 그립이 미끄러지지 않게 해줘요.',
+    specs:{ '소재':'코튼 85% · 스판 15%','구성':'2개입' }, options:[{name:'color',label:'색상',values:[{l:'화이트'},{l:'그린'}]}] },
+];
+const byId = id => P.find(p => p.id === id);
+const STRINGS_FOR_JOB = P.filter(p => p.cat === 'string');
+
+/* ---------- 저장소 (localStorage, 실패 시 메모리) ---------- */
+const KEY = 'courtside_v1';
+let mem = null;
+function load(){
+  try { const v = JSON.parse(localStorage.getItem(KEY)); if (v) return v; } catch(e){}
+  return mem || { users:{}, session:null, cart:[] };
+}
+function save(){
+  mem = db;
+  try { localStorage.setItem(KEY, JSON.stringify(db)); } catch(e){}
+}
+let db = load();
+// 데모용 단방향 해시 (실제 서비스는 서버에서 bcrypt 등 사용)
+const hash = s => { let h = 5381; for (const c of s + '::courtside') h = (h * 33 ^ c.charCodeAt(0)) >>> 0; return h.toString(16); };
+const me = () => db.session ? db.users[db.session] : null;
+
+/* ---------- 가격 계산 ---------- */
+function unitPrice(item){
+  const p = byId(item.id);
+  let u = p.price;
+  (p.options || []).forEach(o => { const v = o.values.find(x => x.l == item.opt[o.name]); if (v && v.add) u += v.add; });
+  if (item.opt.job) u += byId(item.opt.job.string).price;
+  return u;
+}
+function laborFor(user){ const g = user ? gradeFor(user.spent) : GRADES[0]; return LABOR * g.labor; }
+function totals(user, usePoints = 0){
+  const goods = db.cart.reduce((s, it) => s + unitPrice(it) * it.qty, 0);
+  const jobs = db.cart.reduce((s, it) => s + (it.opt.job ? it.qty : 0), 0);
+  const labor = jobs * laborFor(user);
+  const g = user ? gradeFor(user.spent) : GRADES[0];
+  const ship = goods === 0 ? 0 : (g.freeShip || goods >= FREE_SHIP ? 0 : SHIP_FEE);
+  const max = goods + labor + ship;
+  const use = Math.max(0, Math.min(usePoints, max, user ? user.points : 0));
+  const pay = max - use;
+  const earnBase = Math.max(0, goods + labor - use);
+  return { goods, labor, ship, use, pay, earn: Math.floor(earnBase * g.rate), grade: g, jobs, laborFull: jobs * LABOR };
+}
+
+/* ---------- 토스트 ---------- */
+function toast(msg, icon = '✓'){
+  const t = document.createElement('div');
+  t.className = 'toast'; t.innerHTML = `<i>${icon}</i>${msg}`;
+  $('#toasts').appendChild(t);
+  setTimeout(() => { t.classList.add('out'); setTimeout(() => t.remove(), 300); }, 2400);
+}
+
+/* ---------- 오버레이 관리 ---------- */
+const stack = [];
+function open(id){
+  const el = $('#' + id);
+  if (!stack.includes(id)) stack.push(id);
+  el.classList.add('open'); $('#overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+  const f = el.querySelector('input:not([type=hidden]):not([type=checkbox]),button:not(.modal-x)');
+  if (f && id !== 'pdModal' && id !== 'myModal') setTimeout(() => f.focus({ preventScroll:true }), 60);
+}
+function close(id){
+  id = id || stack[stack.length - 1]; if (!id || !stack.includes(id)) return;
+  $('#' + id).classList.remove('open');
+  stack.splice(stack.indexOf(id), 1);
+  if (!stack.length){ $('#overlay').classList.remove('open'); document.body.style.overflow = ''; }
+}
+function closeAll(){ [...stack].forEach(close); }
+$('#overlay').addEventListener('click', () => { if (stack[stack.length-1] !== 'pgModal') close(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape' && stack.length && stack[stack.length-1] !== 'pgModal') close(); });
+document.addEventListener('click', e => {
+  const x = e.target.closest('[data-close]');
+  if (x){ const host = x.closest('.modal,.drawer,.mnav'); if (host) close(host.id); }
+});
+
+/* ---------- 헤더 ---------- */
+function renderHeader(){
+  const u = me();
+  $('#userSlot').innerHTML = u
+    ? `<button class="user-chip" id="userChip" aria-label="마이페이지"><span class="av">${esc(u.name[0])}</span><span class="nm">${esc(u.name)}님</span><span class="gr">${gradeFor(u.spent).id}</span></button>`
+    : `<button class="user-chip" data-auth="login"><span class="av"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg></span><span class="nm">로그인</span></button>`;
+  const n = db.cart.reduce((s, i) => s + i.qty, 0);
+  const b = $('#cartCount'); b.textContent = n; b.classList.toggle('show', n > 0);
+}
+addEventListener('scroll', () => $('#header').classList.toggle('scrolled', scrollY > 10), { passive:true });
+$('#marquee').innerHTML += $('#marquee').innerHTML;
+
+/* ---------- 히어로 슬라이더 ---------- */
+const hero = (() => {
+  const slides = $$('.slide'), N = slides.length, DUR = 6000;
+  let i = 0, timer = null, paused = false;
+  $('#heroTotal').textContent = String(N).padStart(2,'0');
+  $('#dots').innerHTML = slides.map((_, k) => `<button class="dot" aria-label="${k+1}번 슬라이드"><i></i></button>`).join('');
+  const dots = $$('.dot');
+  document.documentElement.style.setProperty('--dur', DUR + 'ms');
+  function go(n){
+    i = (n + N) % N;
+    slides.forEach((s, k) => { s.classList.toggle('active', k === i); s.setAttribute('aria-hidden', k !== i); });
+    dots.forEach((d, k) => { d.classList.remove('active'); d.classList.toggle('done', k < i); });
+    void dots[i].offsetWidth; dots[i].classList.add('active');
+    $('#heroCur').textContent = String(i+1).padStart(2,'0');
+    schedule();
+  }
+  let start = 0, remain = DUR;
+  function schedule(){ clearTimeout(timer); remain = DUR; start = Date.now(); if (!paused) timer = setTimeout(() => go(i+1), remain); }
+  function pause(){ if (paused) return; paused = true; clearTimeout(timer); remain -= Date.now() - start; $('#hero').classList.add('paused'); }
+  function resume(){ if (!paused) return; paused = false; start = Date.now(); $('#hero').classList.remove('paused'); timer = setTimeout(() => go(i+1), Math.max(300, remain)); }
+  dots.forEach((d, k) => d.addEventListener('click', () => go(k)));
+  $('#prevSlide').onclick = () => go(i-1);
+  $('#nextSlide').onclick = () => go(i+1);
+  const h = $('#hero');
+  document.addEventListener('visibilitychange', () => document.hidden ? pause() : resume());
+  let x0 = null;
+  h.addEventListener('touchstart', e => x0 = e.touches[0].clientX, { passive:true });
+  h.addEventListener('touchend', e => { if (x0 === null) return; const dx = e.changedTouches[0].clientX - x0; if (Math.abs(dx) > 50) go(i + (dx < 0 ? 1 : -1)); x0 = null; });
+  go(0);
+  return { go };
+})();
+
+/* ---------- 카테고리 & 상품 목록 ---------- */
+let filter = 'all', sortBy = 'reco';
+$('#cats').innerHTML = CATS.map(c => `
+  <button class="cat" data-cat="${c.id}"><img src="${c.img}" alt="" loading="lazy">
+    <b>${c.ko}</b><small>${P.filter(p => p.cat === c.id).length}개 상품 <i>→</i></small></button>`).join('');
+function renderTabs(){
+  const all = [{ id:'all', ko:'전체' }, ...CATS];
+  $('#tabs').innerHTML = all.map(c => `<button class="tab ${filter === c.id ? 'active' : ''}" role="tab" aria-selected="${filter === c.id}" data-tab="${c.id}">${c.ko}<span class="n">${c.id === 'all' ? P.length : P.filter(p => p.cat === c.id).length}</span></button>`).join('');
+}
+function cardHTML(p){
+  const off = p.list > p.price ? Math.round((1 - p.price / p.list) * 100) : 0;
+  const u = me(); const g = u ? gradeFor(u.spent) : GRADES[0];
+  const flags = p.flags.map(f => `<span class="${f}">${f === 'best' ? 'BEST' : f === 'new' ? 'NEW' : off + '% OFF'}</span>`).join('');
+  return `<article class="card reveal" data-pid="${p.id}" tabindex="0" aria-label="${esc(p.name)}">
+    <div class="card-img"><img src="img/${p.img}.svg" alt="${esc(p.name)}" loading="lazy">
+      <div class="flag">${flags}</div>
+      <button class="quick" data-quick="${p.id}"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>${p.options.length || p.stringable ? '옵션 선택' : '장바구니 담기'}</button></div>
+    <div class="card-body"><div class="card-brand">${p.brand}</div><h3 class="card-name">${esc(p.name)}</h3>
+      <div class="chips">${p.tags.map(t => `<span class="chip">${t}</span>`).join('')}</div>
+      <div class="price-row">${off ? `<span class="off">${off}%</span>` : ''}<span class="now">${won(p.price)}</span>${off ? `<del>${won(p.list)}</del>` : ''}</div>
+      <div class="earn">${u ? `${g.id} ${Math.round(g.rate*100)}% · ${pt(p.price * g.rate)} 적립` : `최대 ${pt(p.price * .05)} 적립`}</div>
+    </div></article>`;
+}
+function renderGrid(){
+  let list = P.filter(p => filter === 'all' || p.cat === filter);
+  const off = p => 1 - p.price / p.list;
+  if (sortBy === 'low') list = [...list].sort((a, b) => a.price - b.price);
+  if (sortBy === 'high') list = [...list].sort((a, b) => b.price - a.price);
+  if (sortBy === 'sale') list = [...list].sort((a, b) => off(b) - off(a));
+  $('#grid').innerHTML = list.length ? list.map(cardHTML).join('') : '<p class="empty">상품이 없어요.</p>';
+  observe($$('#grid .reveal'));
+}
+function setFilter(c, scroll = true){
+  filter = c; renderTabs(); renderGrid();
+  if (scroll) $('#shop').scrollIntoView({ behavior:'smooth' });
+}
+$('#tabs').addEventListener('click', e => { const t = e.target.closest('[data-tab]'); if (t) setFilter(t.dataset.tab, false); });
+$('#sort').addEventListener('change', e => { sortBy = e.target.value; renderGrid(); });
+$('#grid').addEventListener('click', e => {
+  const q = e.target.closest('[data-quick]');
+  if (q){ e.stopPropagation(); const p = byId(q.dataset.quick);
+    if (p.options.length || p.stringable) openProduct(p.id); else { addToCart(p.id, {}, 1); } return; }
+  const c = e.target.closest('[data-pid]'); if (c) openProduct(c.dataset.pid);
+});
+$('#grid').addEventListener('keydown', e => { if (e.key === 'Enter' && e.target.dataset.pid) openProduct(e.target.dataset.pid); });
+document.addEventListener('click', e => {
+  const c = e.target.closest('[data-cat]');
+  if (c){ e.preventDefault(); close('mnav'); setFilter(c.dataset.cat); return; }
+  const g = e.target.closest('[data-go]');
+  if (g){ setFilter(g.dataset.go); return; }
+  const a = e.target.closest('[data-auth]');
+  if (a){ e.preventDefault(); openAuth(a.dataset.auth); return; }
+  if (e.target.closest('#userChip') || e.target.closest('[data-my]')){ e.preventDefault(); me() ? openMy() : openAuth('login'); return; }
+  const m = e.target.closest('.mnav a[href^="#"]'); if (m) close('mnav');
+});
+
+/* ---------- 상품 상세 ---------- */
+function openProduct(id){
+  const p = byId(id); const u = me(); const g = u ? gradeFor(u.spent) : GRADES[0];
+  const off = p.list > p.price ? Math.round((1 - p.price / p.list) * 100) : 0;
+  const opts = (p.options || []).map(o => `
+    <div class="field"><label for="opt-${o.name}">${o.label}</label>
+      <select class="inp" id="opt-${o.name}" data-opt="${o.name}">
+        <option value="">${o.label} 선택</option>
+        ${o.values.map(v => `<option value="${v.l}">${v.l}${v.add ? ` (+${won(v.add)})` : ''}</option>`).join('')}
+      </select></div>`).join('');
+  const labor = laborFor(u);
+  const job = p.stringable ? `
+    <div class="str-box" id="strBox">
+      <label class="check"><input type="checkbox" id="jobOn"><span><b>스트링 작업 추가</b><br><small style="color:var(--muted)">원하는 스트링과 텐션으로 장착해서 보내드려요</small></span></label>
+      <div class="str-detail">
+        <div class="row2">
+          <div class="field"><label for="jobString">스트링</label><select class="inp" id="jobString">${STRINGS_FOR_JOB.map(s => `<option value="${s.id}">${s.name} (+${won(s.price)})</option>`).join('')}</select></div>
+          <div class="field"><label for="jobTension">텐션</label><select class="inp" id="jobTension">${Array.from({length:12}, (_, k) => 40 + k*2).map(t => `<option ${t === 50 ? 'selected' : ''}>${t} lbs</option>`).join('')}</select></div>
+        </div>
+        <div class="fee-note">작업비 ${labor === LABOR ? won(LABOR) : labor === 0 ? `<del style="color:#999">${won(LABOR)}</del> 무료 (${g.id} 혜택)` : `<del style="color:#999">${won(LABOR)}</del> ${won(labor)} (${g.id} 50% 할인)`} · 결제 시 합산</div>
+      </div>
+    </div>` : '';
+  $('#pdBody').innerHTML = `
+    <div class="pd">
+      <div class="pd-img"><img src="img/${p.img}.svg" alt="${esc(p.name)}"></div>
+      <div class="pd-info">
+        <div class="card-brand">${p.brand}</div>
+        <h2>${esc(p.name)}</h2>
+        <div class="price-row">${off ? `<span class="off">${off}%</span>` : ''}<span class="now" style="font-size:24px">${won(p.price)}</span>${off ? `<del>${won(p.list)}</del>` : ''}</div>
+        <div class="earn">${u ? `${g.id} 등급 ${Math.round(g.rate*100)}% 적립 · 약 ${pt(p.price*g.rate)}` : '로그인하면 등급별 최대 5% 적립'}</div>
+        <p class="desc">${p.desc}</p>
+        <table class="spec-table">${Object.entries(p.specs).map(([k, v]) => `<tr><td>${k}</td><td>${v}</td></tr>`).join('')}</table>
+        ${opts}${job}
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-top:6px">
+          <span style="font-weight:700;font-size:14px">수량</span>
+          <div class="qty"><button data-q="-1" aria-label="수량 감소">−</button><span id="pdQty">1</span><button data-q="1" aria-label="수량 증가">+</button></div>
+        </div>
+        <div class="pd-total"><span style="font-weight:700">총 상품금액</span><b id="pdTotal">${won(p.price)}</b></div>
+        <p class="err-msg" id="pdErr" style="margin-bottom:8px"></p>
+        <div class="pd-btns"><button class="btn btn-line" id="pdCart">장바구니</button><button class="btn btn-primary" id="pdBuy">바로 구매</button></div>
+      </div>
+    </div>`;
+  let qty = 1;
+  const read = () => {
+    const opt = {};
+    $$('[data-opt]', $('#pdBody')).forEach(s => opt[s.dataset.opt] = s.value);
+    if ($('#jobOn')?.checked) opt.job = { string: $('#jobString').value, tension: $('#jobTension').value };
+    return opt;
+  };
+  const update = () => {
+    const opt = read(); const item = { id, opt, qty };
+    let t = unitPrice(item) * qty + (opt.job ? laborFor(me()) * qty : 0);
+    $('#pdTotal').textContent = won(t);
+    $('#pdQty').textContent = qty;
+  };
+  $('#pdBody').addEventListener('change', e => {
+    if (e.target.id === 'jobOn') $('#strBox').classList.toggle('on', e.target.checked);
+    update();
+  });
+  $$('[data-q]', $('#pdBody')).forEach(b => b.onclick = () => { qty = Math.max(1, Math.min(99, qty + +b.dataset.q)); update(); });
+  const validate = () => {
+    const opt = read();
+    const miss = (p.options || []).find(o => !opt[o.name]);
+    if (miss){ $('#pdErr').textContent = `${miss.label}을(를) 선택해주세요.`; $('#opt-' + miss.name).classList.add('err'); return null; }
+    return opt;
+  };
+  $$('[data-opt]', $('#pdBody')).forEach(s => s.addEventListener('change', () => { s.classList.remove('err'); $('#pdErr').textContent = ''; }));
+  $('#pdCart').onclick = () => { const o = validate(); if (o){ addToCart(id, o, qty); close('pdModal'); } };
+  $('#pdBuy').onclick = () => { const o = validate(); if (o){ addToCart(id, o, qty, true); close('pdModal'); openCheckout(); } };
+  open('pdModal');
+}
+
+/* ---------- 장바구니 ---------- */
+const keyOf = (id, opt) => id + '|' + JSON.stringify(opt);
+function addToCart(id, opt, qty, silent){
+  const key = keyOf(id, opt);
+  const ex = db.cart.find(i => i.key === key);
+  ex ? ex.qty = Math.min(99, ex.qty + qty) : db.cart.push({ key, id, opt, qty });
+  save(); renderHeader(); renderCart();
+  if (!silent) toast(`장바구니에 담았어요 · ${esc(byId(id).name)}`, '🛒');
+}
+function optText(it){
+  const p = byId(it.id); const parts = [];
+  (p.options || []).forEach(o => it.opt[o.name] && parts.push(it.opt[o.name]));
+  if (it.opt.job) parts.push(`스트링 작업: ${byId(it.opt.job.string).name} · ${it.opt.job.tension}`);
+  return parts.join(' / ');
+}
+function renderCart(){
+  const u = me(); const t = totals(u);
+  const n = db.cart.reduce((s, i) => s + i.qty, 0);
+  $('#cartHeadCount').textContent = n ? `(${n})` : '';
+  if (!db.cart.length){
+    $('#cartBody').innerHTML = `<div class="cart-empty"><img src="img/ball-practice.svg" alt=""><b style="color:var(--ink);font-size:17px">장바구니가 비어 있어요</b><p style="margin:6px 0 18px">마음에 드는 장비를 담아보세요.</p><button class="btn btn-primary" data-go="all" data-close>쇼핑하러 가기</button></div>`;
+    $('#cartFoot').innerHTML = ''; return;
+  }
+  const remain = FREE_SHIP - t.goods;
+  const shipMsg = t.grade.freeShip ? `<b>${t.grade.id}</b> 등급은 항상 무료배송이에요 🎾` : remain > 0 ? `<b>${won(remain)}</b> 더 담으면 무료배송!` : '무료배송 조건을 달성했어요 🎾';
+  $('#cartBody').innerHTML = `
+    <div class="ship-meter">${shipMsg}<div class="bar"><i style="width:${t.grade.freeShip ? 100 : Math.min(100, t.goods / FREE_SHIP * 100)}%"></i></div></div>
+    ${db.cart.map(it => { const p = byId(it.id); return `
+      <div class="ci"><img src="img/${p.img}.svg" alt="">
+        <div><h4>${esc(p.name)}</h4><div class="opt-txt">${esc(optText(it)) || p.brand}</div>
+          <div class="ci-row"><div class="qty"><button data-cq="-1" data-k="${esc(it.key)}" aria-label="감소">−</button><span>${it.qty}</span><button data-cq="1" data-k="${esc(it.key)}" aria-label="증가">+</button></div>
+          <div><b>${won(unitPrice(it) * it.qty)}</b><button class="ci-del" data-del="${esc(it.key)}">삭제</button></div></div>
+        </div></div>`; }).join('')}`;
+  $('#cartFoot').innerHTML = `
+    <div class="sum-row"><span>상품금액</span><span>${won(t.goods)}</span></div>
+    ${t.jobs ? `<div class="sum-row"><span>스트링 작업비 (${t.jobs}건)</span><span>${t.labor === t.laborFull ? won(t.labor) : `<del style="color:#aaa;margin-right:6px">${won(t.laborFull)}</del>${won(t.labor)}`}</span></div>` : ''}
+    <div class="sum-row"><span>배송비</span><span>${t.ship ? won(t.ship) : '무료'}</span></div>
+    <div class="sum-row total"><span>결제 예정 금액</span><span>${won(t.goods + t.labor + t.ship)}</span></div>
+    <div class="earn" style="margin-bottom:14px">${u ? `${t.grade.id} 등급 · ${pt(t.earn)} 적립 예정` : `로그인하면 최대 ${pt((t.goods + t.labor) * .05)} 적립`}</div>
+    <button class="btn btn-primary btn-block" id="toCheckout">주문하기</button>`;
+  $('#toCheckout').onclick = () => { close('cartDrawer'); openCheckout(); };
+}
+$('#cartBody').addEventListener('click', e => {
+  const q = e.target.closest('[data-cq]'), d = e.target.closest('[data-del]');
+  if (q){ const it = db.cart.find(i => i.key === q.dataset.k); it.qty += +q.dataset.cq; if (it.qty < 1) db.cart = db.cart.filter(i => i !== it); }
+  if (d){ db.cart = db.cart.filter(i => i.key !== d.dataset.del); toast('상품을 삭제했어요', '−'); }
+  if (q || d){ save(); renderCart(); renderHeader(); }
+});
+$('#cartBtn').onclick = () => { renderCart(); open('cartDrawer'); };
+
+/* ---------- 회원가입 / 로그인 ---------- */
+let afterAuth = null;
+function openAuth(tab = 'login', msg, then){
+  afterAuth = then || null;
+  $('#authSub').textContent = msg || (tab === 'signup' ? '가입하면 3,000P와 등급별 적립 혜택을 드려요.' : '로그인하고 등급별 포인트 혜택을 받으세요.');
+  switchAuth(tab); open('authModal');
+}
+function switchAuth(tab){
+  $$('.auth-tabs button').forEach(b => b.classList.toggle('on', b.dataset.atab === tab));
+  $('#loginForm').hidden = tab !== 'login'; $('#signupForm').hidden = tab !== 'signup';
+  $('#authTitle').textContent = tab === 'login' ? '다시 만나서 반가워요' : 'COURTSIDE 회원가입';
+  $$('.err-msg', $('#authModal')).forEach(e => e.textContent = '');
+  $$('.inp', $('#authModal')).forEach(e => e.classList.remove('err'));
+}
+$('#authModal').addEventListener('click', e => { const t = e.target.closest('[data-atab]'); if (t){ e.preventDefault(); switchAuth(t.dataset.atab); } });
+$('#sAll').addEventListener('change', e => $$('.agree').forEach(c => c.checked = e.target.checked));
+$$('.agree').forEach(c => c.addEventListener('change', () => $('#sAll').checked = $$('.agree').every(x => x.checked)));
+$('#sPhone').addEventListener('input', e => {
+  const d = e.target.value.replace(/\D/g, '').slice(0, 11);
+  e.target.value = d.length < 4 ? d : d.length < 8 ? `${d.slice(0,3)}-${d.slice(3)}` : `${d.slice(0,3)}-${d.slice(3,d.length-4)}-${d.slice(-4)}`;
+});
+function fail(form, id, msg){ $(id).classList.add('err'); $(form === 'login' ? '#loginErr' : '#signupErr').textContent = msg; $(id).focus(); return false; }
+$('#signupForm').addEventListener('submit', e => {
+  e.preventDefault();
+  $$('#signupForm .inp').forEach(i => i.classList.remove('err'));
+  const name = $('#sName').value.trim(), email = $('#sEmail').value.trim().toLowerCase(), pw = $('#sPw').value, pw2 = $('#sPw2').value, phone = $('#sPhone').value;
+  if (name.length < 2) return fail('s', '#sName', '이름을 2자 이상 입력해주세요.');
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return fail('s', '#sEmail', '올바른 이메일 형식이 아니에요.');
+  if (db.users[email]) return fail('s', '#sEmail', '이미 가입된 이메일이에요. 로그인해주세요.');
+  if (pw.length < 8 || !/[a-z]/i.test(pw) || !/\d/.test(pw)) return fail('s', '#sPw', '비밀번호는 영문과 숫자를 포함해 8자 이상이어야 해요.');
+  if (pw !== pw2) return fail('s', '#sPw2', '비밀번호가 일치하지 않아요.');
+  if (!/^01\d-\d{3,4}-\d{4}$/.test(phone)) return fail('s', '#sPhone', '휴대폰 번호를 확인해주세요.');
+  if (!$$('.agree[data-req]').every(c => c.checked)) { $('#signupErr').textContent = '필수 약관에 동의해주세요.'; return; }
+  db.users[email] = { name, email, pw: hash(pw), phone, mkt: $('#sMkt').checked, joined: today(),
+    points: WELCOME, spent: 0, orders: [], plog: [{ date: today(), desc: '신규 회원가입 웰컴 포인트', amt: WELCOME }] };
+  db.session = email; save();
+  $('#signupForm').reset();
+  close('authModal'); refreshAll();
+  toast(`${esc(name)}님, 환영해요! 3,000P가 지급됐어요`, 'P');
+  if (afterAuth) { const f = afterAuth; afterAuth = null; f(); }
+});
+$('#loginForm').addEventListener('submit', e => {
+  e.preventDefault();
+  $$('#loginForm .inp').forEach(i => i.classList.remove('err'));
+  const email = $('#lEmail').value.trim().toLowerCase(), pw = $('#lPw').value;
+  if (!email) return fail('login', '#lEmail', '이메일을 입력해주세요.');
+  const u = db.users[email];
+  if (!u || u.pw !== hash(pw)) return fail('login', '#lPw', '이메일 또는 비밀번호가 맞지 않아요.');
+  db.session = email; save();
+  $('#loginForm').reset(); close('authModal'); refreshAll();
+  toast(`${esc(u.name)}님, 다시 오셨네요!`, '👋');
+  if (afterAuth) { const f = afterAuth; afterAuth = null; f(); }
+});
+function logout(){ db.session = null; save(); closeAll(); refreshAll(); toast('로그아웃했어요', '→'); }
+
+/* ---------- 주문 / 결제 ---------- */
+const PAY = [
+  { id:'card',  ko:'신용·체크카드', tag:'CARD', bg:'#0E1A15', fg:'#fff' },
+  { id:'kakao', ko:'카카오페이',   tag:'pay',  bg:'#FEE500', fg:'#191919' },
+  { id:'naver', ko:'네이버페이',   tag:'N pay', bg:'#03C75A', fg:'#fff' },
+  { id:'toss',  ko:'토스페이',     tag:'toss', bg:'#0064FF', fg:'#fff' },
+  { id:'bank',  ko:'무통장입금',   tag:'BANK', bg:'#E4EEE8', fg:'#0B4F3C' },
+  { id:'phone', ko:'휴대폰 결제',  tag:'MOBILE', bg:'#F5F3EA', fg:'#0E1A15' },
+];
+let usePts = 0;
+function openCheckout(){
+  if (!db.cart.length){ toast('장바구니가 비어 있어요', '!'); return; }
+  const u = me();
+  if (!u){ openAuth('login', '로그인 후 주문하면 포인트가 적립돼요.', openCheckout); return; }
+  usePts = 0;
+  $('#coBody').innerHTML = `
+  <form class="co" id="coForm" novalidate>
+    <div class="co-main">
+      <h2 class="m-title">주문 · 결제</h2>
+      <p class="m-sub">${esc(u.name)}님 · <span class="gr-pill">${gradeFor(u.spent).id}</span>보유 포인트 ${pt(u.points)}</p>
+      <h4><span class="n">1</span>배송지</h4>
+      <div class="row2">
+        <div class="field"><label for="oName">받는 분 <i>*</i></label><input class="inp" id="oName" value="${esc(u.addr?.name || u.name)}"></div>
+        <div class="field"><label for="oPhone">연락처 <i>*</i></label><input class="inp" id="oPhone" value="${esc(u.addr?.phone || u.phone)}"></div>
+      </div>
+      <div class="field"><label for="oZip">주소 <i>*</i></label>
+        <div style="display:flex;gap:8px"><input class="inp" id="oZip" placeholder="우편번호" style="max-width:140px" inputmode="numeric" value="${esc(u.addr?.zip || '')}"><input class="inp" id="oAddr" placeholder="도로명 주소" value="${esc(u.addr?.addr || '')}"></div>
+        <input class="inp" id="oAddr2" placeholder="상세 주소 (동·호수)" value="${esc(u.addr?.addr2 || '')}"></div>
+      <div class="field"><label for="oMemo">배송 메모</label><select class="inp" id="oMemo"><option>문 앞에 놓아주세요</option><option>경비실에 맡겨주세요</option><option>배송 전 연락 부탁드려요</option><option>택배함에 넣어주세요</option></select></div>
+
+      <h4><span class="n">2</span>포인트</h4>
+      <div class="pt-box">
+        <div class="pt-line"><input class="inp" id="ptIn" inputmode="numeric" placeholder="0" ${u.points < MIN_USE ? 'disabled' : ''}><button type="button" class="btn btn-line" id="ptAll" ${u.points < MIN_USE ? 'disabled' : ''}>전액 사용</button></div>
+        <p class="pt-help">사용 가능 <b style="color:var(--green)">${pt(u.points)}</b> · ${u.points < MIN_USE ? `${pt(MIN_USE)} 이상 모이면 사용할 수 있어요.` : '1P = 1원, 결제금액 전액까지 사용 가능'}</p>
+      </div>
+
+      <h4><span class="n">3</span>결제 수단</h4>
+      <div class="pay-methods">${PAY.map((m, k) => `<label class="pm"><input type="radio" name="pay" value="${m.id}" ${k === 0 ? 'checked' : ''}><span><i style="background:${m.bg};color:${m.fg}">${m.tag}</i>${m.ko}</span></label>`).join('')}</div>
+      <div class="pay-extra" id="payExtra"></div>
+    </div>
+    <aside class="co-side">
+      <h4 style="margin-top:0">주문 상품 ${db.cart.reduce((s, i) => s + i.qty, 0)}개</h4>
+      <div class="co-items">${db.cart.map(it => { const p = byId(it.id); return `<div class="co-it"><img src="img/${p.img}.svg" alt=""><div><b>${esc(p.name)}</b><small>${esc(optText(it))}${optText(it) ? ' · ' : ''}${it.qty}개</small></div><b>${won(unitPrice(it) * it.qty)}</b></div>`; }).join('')}</div>
+      <div id="coSum"></div>
+      <label class="check" style="margin-top:14px"><input type="checkbox" id="oAgree">주문 내용을 확인했으며 결제에 동의합니다. (필수)</label>
+      <p class="err-msg" id="coErr"></p>
+      <button class="btn btn-primary btn-block" id="payBtn" style="height:56px;font-size:16px;margin-top:8px">결제하기</button>
+      <p class="demo-note">※ 데모 결제입니다. 실제 카드 승인이나 출금은 발생하지 않아요. 운영 시 PG사(토스페이먼츠·포트원 등) 결제창으로 연결하세요.</p>
+    </aside>
+  </form>`;
+  const sum = () => {
+    const t = totals(u, usePts); usePts = t.use;
+    $('#coSum').innerHTML = `
+      <div class="sum-row"><span>상품금액</span><span>${won(t.goods)}</span></div>
+      ${t.jobs ? `<div class="sum-row"><span>스트링 작업비</span><span>${t.labor === t.laborFull ? won(t.labor) : `<del style="color:#aaa;margin-right:6px">${won(t.laborFull)}</del>${won(t.labor)}`}</span></div>` : ''}
+      <div class="sum-row"><span>배송비</span><span>${t.ship ? won(t.ship) : '무료'}</span></div>
+      <div class="sum-row"><span>포인트 사용</span><span class="minus">−${won(t.use)}</span></div>
+      <div class="sum-row total"><span>최종 결제금액</span><span>${won(t.pay)}</span></div>
+      <div class="earn-box"><span>${t.grade.id} 등급 ${Math.round(t.grade.rate*100)}% 적립 예정</span><b>+${pt(t.earn)}</b></div>`;
+    $('#payBtn').textContent = `${won(t.pay)} 결제하기`;
+  };
+  const extra = () => {
+    const m = $('input[name=pay]:checked').value; const t = totals(u, usePts);
+    $('#payExtra').innerHTML = m === 'card' ? `
+      <div class="row2"><div class="field"><label for="cardCo">카드사</label><select class="inp" id="cardCo">${['신한','KB국민','현대','삼성','롯데','하나','우리','BC','NH농협'].map(c => `<option>${c}카드</option>`).join('')}</select></div>
+      <div class="field"><label for="cardIns">할부</label><select class="inp" id="cardIns"><option>일시불</option>${t.pay >= 50000 ? [2,3,4,5,6,10,12].map(n => `<option>${n}개월${n <= 3 ? ' (무이자)' : ''}</option>`).join('') : ''}</select></div></div>
+      <p class="pt-help">카드 번호는 결제창에서 카드사가 직접 받아요. 쇼핑몰은 카드 정보를 저장하지 않습니다.</p>` :
+      m === 'bank' ? `
+      <div class="row2"><div class="field"><label for="bankSel">입금 은행</label><select class="inp" id="bankSel"><option>국민은행 000-00-0000-000</option><option>신한은행 000-000-000000</option><option>우리은행 0000-000-000000</option></select></div>
+      <div class="field"><label for="depositor">입금자명 <i>*</i></label><input class="inp" id="depositor" value="${esc(u.name)}"></div></div>
+      <p class="pt-help">주문 후 24시간 이내 입금해주세요. 포인트는 입금 확인 후 적립돼요.</p>` :
+      `<p class="pt-help">결제하기를 누르면 ${PAY.find(p => p.id === m).ko} 결제창이 열려요.</p>`;
+  };
+  const ptIn = $('#ptIn');
+  ptIn.addEventListener('input', () => {
+    let v = +ptIn.value.replace(/\D/g, '') || 0;
+    const t = totals(u, 1e12); v = Math.min(v, t.use);
+    usePts = v; ptIn.value = v ? v.toLocaleString('ko-KR') : ''; sum();
+  });
+  $('#ptAll').onclick = () => { usePts = totals(u, 1e12).use; ptIn.value = usePts.toLocaleString('ko-KR'); sum(); extra(); };
+  $$('input[name=pay]').forEach(r => r.addEventListener('change', extra));
+  $('#oZip').addEventListener('input', e => e.target.value = e.target.value.replace(/\D/g, '').slice(0, 5));
+  $('#coForm').addEventListener('submit', e => { e.preventDefault(); submitOrder(u); });
+  sum(); extra(); open('coModal');
+}
+function submitOrder(u){
+  $$('#coForm .inp').forEach(i => i.classList.remove('err'));
+  const err = (id, msg) => { $('#coErr').textContent = msg; if (id){ $(id).classList.add('err'); $(id).focus(); } };
+  const f = { name: $('#oName').value.trim(), phone: $('#oPhone').value.trim(), zip: $('#oZip').value.trim(), addr: $('#oAddr').value.trim(), addr2: $('#oAddr2').value.trim() };
+  if (!f.name) return err('#oName', '받는 분 이름을 입력해주세요.');
+  if (f.phone.replace(/\D/g, '').length < 10) return err('#oPhone', '연락처를 확인해주세요.');
+  if (f.zip.length !== 5) return err('#oZip', '우편번호 5자리를 입력해주세요.');
+  if (!f.addr) return err('#oAddr', '주소를 입력해주세요.');
+  if (!f.addr2) return err('#oAddr2', '상세 주소를 입력해주세요.');
+  const method = $('input[name=pay]:checked').value;
+  if (method === 'bank' && !$('#depositor').value.trim()) return err('#depositor', '입금자명을 입력해주세요.');
+  if (!$('#oAgree').checked) return err(null, '결제 동의에 체크해주세요.');
+  $('#coErr').textContent = '';
+  const t = totals(u, usePts);
+  const extra = method === 'card' ? `${$('#cardCo').value} · ${$('#cardIns').value}` : method === 'bank' ? `${$('#bankSel').value} · 입금자 ${$('#depositor').value.trim()}` : '';
+  showPG(method, t, () => finalizeOrder(u, f, method, extra, $('#oMemo').value));
+}
+function showPG(method, t, onOk){
+  const m = PAY.find(p => p.id === method);
+  if (method === 'bank'){ onOk(); return; }
+  $('#pgBody').innerHTML = `
+    <div class="pg-head" style="background:${m.bg};color:${m.fg}">${m.ko} 결제</div>
+    <div class="m-pad" style="padding-top:20px">
+      <p style="color:var(--muted);font-size:14px">COURTSIDE · 주문 상품 ${db.cart.length}건</p>
+      <div class="pg-amount">${won(t.pay)}</div>
+      <p class="demo-note" style="margin-bottom:22px">테스트 결제창입니다. 승인을 눌러도 실제 결제는 발생하지 않아요.</p>
+      <div id="pgAct" style="display:grid;gap:8px"><button class="btn btn-primary btn-block" id="pgOk">결제 승인</button><button class="btn btn-line btn-block" id="pgNo">취소</button></div>
+    </div>`;
+  $('#pgNo').onclick = () => { close('pgModal'); toast('결제를 취소했어요', '!'); };
+  $('#pgOk').onclick = () => {
+    $('#pgAct').innerHTML = '<div class="spinner"></div><p style="font-weight:700">결제 승인 중…</p>';
+    setTimeout(() => { close('pgModal'); onOk(); }, 1300);
+  };
+  open('pgModal');
+}
+function finalizeOrder(u, addr, method, extra, memo){
+  const t = totals(u, usePts);
+  const before = gradeFor(u.spent);
+  const pending = method === 'bank';
+  const id = 'CS' + Date.now().toString().slice(-10);
+  const order = { id, date: today(), items: db.cart.map(it => ({ id: it.id, name: byId(it.id).name, opt: optText(it), qty: it.qty, price: unitPrice(it) * it.qty })),
+    goods: t.goods, labor: t.labor, ship: t.ship, used: t.use, pay: t.pay, earn: t.earn, method, extra, memo, addr,
+    status: pending ? '입금대기' : '결제완료', earned: !pending };
+  if (t.use){ u.points -= t.use; u.plog.unshift({ date: today(), desc: `주문 ${id} 결제 시 사용`, amt: -t.use }); }
+  if (!pending) applyEarn(u, order);
+  u.orders.unshift(order); u.addr = addr;
+  db.cart = []; save();
+  close('coModal'); refreshAll();
+  const after = gradeFor(u.spent);
+  $('#doneBody').innerHTML = `
+    <div class="done-ic"><svg viewBox="0 0 24 24" fill="none" stroke="#0B4F3C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
+    <h2 class="m-title">${pending ? '주문이 접수됐어요' : '결제가 완료됐어요!'}</h2>
+    <p class="m-sub" style="margin-bottom:0">${pending ? '입금이 확인되면 바로 출고해드릴게요.' : '오후 2시 이전 주문은 오늘 출고돼요.'}</p>
+    ${after !== before ? `<div class="up-banner" style="margin-top:18px">🎉 등급 UP! <b>${before.id}</b> → <b>${after.id}</b><br><small style="font-weight:500;opacity:.85">이제 ${Math.round(after.rate*100)}% 적립 혜택을 받아요</small></div>` : ''}
+    <div class="receipt">
+      <div class="sum-row"><span>주문번호</span><b>${id}</b></div>
+      <div class="sum-row"><span>결제수단</span><span>${PAY.find(p => p.id === method).ko}</span></div>
+      ${extra ? `<div class="sum-row"><span></span><small style="color:var(--muted)">${esc(extra)}</small></div>` : ''}
+      <div class="sum-row"><span>포인트 사용</span><span class="minus">−${pt(t.use)}</span></div>
+      <div class="sum-row total"><span>${pending ? '입금할 금액' : '결제금액'}</span><span>${won(t.pay)}</span></div>
+      <div class="earn">${pending ? `입금 확인 후 ${pt(t.earn)} 적립 예정` : `${pt(t.earn)} 적립 완료 · 보유 ${pt(u.points)}`}</div>
+    </div>
+    <div class="pd-btns"><button class="btn btn-line" id="goOrders">주문내역 보기</button><button class="btn btn-primary" data-close id="keepShop">쇼핑 계속하기</button></div>`;
+  $('#goOrders').onclick = () => { close('doneModal'); openMy('orders'); };
+  $('#keepShop').onclick = () => close('doneModal');
+  open('doneModal');
+}
+function applyEarn(u, o){
+  u.spent += o.goods + o.labor;
+  if (o.earn){ u.points += o.earn; u.plog.unshift({ date: today(), desc: `주문 ${o.id} 구매 적립`, amt: o.earn }); }
+  o.earned = true;
+}
+
+/* ---------- 마이페이지 ---------- */
+let myTab = 'orders';
+function openMy(tab){ if (tab) myTab = tab; renderMy(); open('myModal'); }
+function renderMy(){
+  const u = me(); if (!u) return;
+  const g = gradeFor(u.spent), n = nextGrade(g);
+  const prog = n ? Math.min(100, (u.spent - g.min) / (n.min - g.min) * 100) : 100;
+  const body = myTab === 'orders'
+    ? (u.orders.length ? u.orders.map(o => `
+      <div class="ord"><div class="ord-h"><span>${o.date} · 주문번호 <b style="color:var(--ink)">${o.id}</b></span><span class="status ${o.status === '입금대기' ? 'wait' : ''}">${o.status}</span></div>
+        <div class="ord-items">${o.items.map(i => `${esc(i.name)} × ${i.qty}`).join('<br>')}</div>
+        <div class="ord-f"><span style="color:var(--muted)">${PAY.find(p => p.id === o.method).ko}${o.used ? ` · 포인트 ${pt(o.used)} 사용` : ''}</span>
+          <span><b>${won(o.pay)}</b> ${o.earned ? `<span class="earn" style="display:inline-flex;margin-left:8px">+${pt(o.earn)}</span>` : `<button class="btn btn-sm btn-ball" data-paid="${o.id}" style="margin-left:8px">입금 확인 (데모)</button>`}</span></div></div>`).join('')
+      : `<div class="cart-empty"><b style="color:var(--ink)">아직 주문 내역이 없어요</b><p style="margin-top:6px">첫 주문하고 포인트를 쌓아보세요.</p></div>`)
+    : myTab === 'points'
+    ? `<div class="sum-row" style="font-size:15px;margin-bottom:6px"><b>보유 포인트</b><b style="color:var(--green)">${pt(u.points)}</b></div>
+       ${u.plog.map(l => `<div class="plog"><div>${esc(l.desc)}<br><small>${l.date}</small></div><div class="amt ${l.amt > 0 ? 'plus' : 'minus'}">${l.amt > 0 ? '+' : ''}${pt(l.amt)}</div></div>`).join('')}`
+    : `<table class="spec-table"><tr><td>이름</td><td>${esc(u.name)}</td></tr><tr><td>이메일</td><td>${esc(u.email)}</td></tr><tr><td>휴대폰</td><td>${esc(u.phone)}</td></tr><tr><td>가입일</td><td>${u.joined}</td></tr><tr><td>마케팅 수신</td><td>${u.mkt ? '동의' : '미동의'}</td></tr><tr><td>누적 구매금액</td><td>${won(u.spent)}</td></tr></table>
+       <button class="btn btn-line" id="logoutBtn">로그아웃</button>`;
+  $('#myBody').innerHTML = `
+    <div class="my-hero">
+      <div class="my-top"><div class="my-av">${esc(u.name[0])}</div><div><span class="gr-pill">${g.id}</span><span style="opacity:.8;font-size:14px">${g.ko} 등급 · ${Math.round(g.rate*100)}% 적립</span><h3>${esc(u.name)}님, 오늘도 좋은 랠리 되세요</h3></div></div>
+      <div class="my-stats"><div class="pt">보유 포인트<b>${pt(u.points)}</b></div><div>누적 구매<b>${won(u.spent)}</b></div><div>주문<b>${u.orders.length}건</b></div></div>
+      <div class="prog">${n ? `<b>${n.id}</b>까지 <b style="color:var(--ball)">${won(n.min - u.spent)}</b> 남았어요` : '최고 등급 <b style="color:var(--ball)">GRAND SLAM</b> 달성! 🏆'}<div class="bar"><i style="width:${prog}%"></i></div>
+        <span style="opacity:.6;font-size:12px">${g.perks.join(' · ')}</span></div>
+    </div>
+    <div class="my-tabs">${[['orders','주문내역'],['points','포인트 내역'],['info','회원정보']].map(([k, l]) => `<button data-mt="${k}" class="${myTab === k ? 'on' : ''}">${l}</button>`).join('')}</div>
+    <div class="my-body">${body}</div>`;
+}
+$('#myBody').addEventListener('click', e => {
+  const t = e.target.closest('[data-mt]'); if (t){ myTab = t.dataset.mt; renderMy(); return; }
+  if (e.target.closest('#logoutBtn')) return logout();
+  const pd = e.target.closest('[data-paid]');
+  if (pd){ const u = me(); const o = u.orders.find(x => x.id === pd.dataset.paid); const before = gradeFor(u.spent);
+    o.status = '결제완료'; applyEarn(u, o); save(); refreshAll(); renderMy();
+    const after = gradeFor(u.spent);
+    toast(after !== before ? `입금 확인! 등급이 ${after.id}(으)로 올랐어요` : `입금 확인 · ${pt(o.earn)} 적립됐어요`, 'P'); }
+});
+
+/* ---------- 라켓 파인더 ---------- */
+const ans = {};
+$('#finder').addEventListener('click', e => {
+  const b = e.target.closest('.opt'); if (!b) return;
+  const q = b.closest('.q').dataset.q; ans[q] = b.dataset.v;
+  $$('.opt', b.parentElement).forEach(o => o.classList.toggle('on', o === b));
+  if (ans.level && ans.style && ans.swing) recommend();
+});
+function recommend(){
+  const rackets = P.filter(p => p.cat === 'racket');
+  const scored = rackets.map(r => ({ r, s: (r.fit.level.includes(ans.level) ? 5 : 0) + (r.fit.style.includes(ans.style) ? 3 : 0) + (r.fit.swing.includes(ans.swing) ? 2 : 0) + (r.fit.style[0] === ans.style ? 1 : 0) }));
+  const best = scored.sort((a, b) => b.s - a.s)[0].r;
+  const str = ans.style === 'spin' ? 'hexabite' : ans.level === 'beginner' || ans.level === 'junior' ? 'multifeel' : ans.style === 'control' ? 'polyspin' : ans.style === 'power' ? 'multifeel' : 'synthetic';
+  const box = $('#finderResult');
+  box.innerHTML = `<img src="img/${best.img}.svg" alt=""><div style="flex:1"><small>YOUR MATCH</small><h4>${best.name}</h4><p>${best.specs['무게(언스트링)'] || best.specs['무게']} · ${best.specs['헤드 사이즈']} — 함께 추천: ${byId(str).name}</p></div><button class="btn btn-ball btn-sm" data-open="${best.id}">보기</button>`;
+  box.classList.remove('show'); void box.offsetWidth; box.classList.add('show');
+}
+$('#finderResult').addEventListener('click', e => { const b = e.target.closest('[data-open]'); if (b) openProduct(b.dataset.open); });
+
+/* ---------- 스트링 랩 ---------- */
+$('#strings').innerHTML = STRINGS_FOR_JOB.map(s => `
+  <button class="sCard reveal" data-sid="${s.id}"><img src="img/${s.img}.svg" alt="" loading="lazy"><small>${s.type}</small><h4>${s.name}</h4>
+    ${Object.entries(s.meters).map(([k, v]) => `<div class="meter">${k}<span><i style="--w:${v}%"></i></span></div>`).join('')}
+    <div style="margin-top:12px;display:flex;justify-content:space-between;font-size:13px"><span style="color:rgba(255,255,255,.6)">권장 ${s.tension}</span><b>${won(s.price)}</b></div></button>`).join('');
+$('#strings').addEventListener('click', e => { const c = e.target.closest('[data-sid]'); if (c) openProduct(c.dataset.sid); });
+const tR = $('#tRange');
+function tension(){
+  const v = +tR.value; const p = (v - 40) / 22 * 100;
+  tR.style.setProperty('--p', p + '%');
+  $('#tVal').textContent = v; $('#tKg').textContent = (v * .4536).toFixed(1);
+  const lvl = ['매우 높음','높음','보통','낮음','매우 낮음'];
+  const idx = Math.min(4, Math.floor(p / 20.01));
+  $('#tPow').textContent = lvl[idx]; $('#tCtl').textContent = lvl[4 - idx];
+  $('#tTip').innerHTML = v <= 45 ? '<b>루즈 텐션</b> — 공이 오래 머물며 잘 날아가요. 폴리 스트링이나 팔이 편한 세팅을 원할 때 좋아요.'
+    : v <= 51 ? '<b>미디엄-로우</b> — 파워와 컨트롤의 균형점. 폴리 스트링 사용자에게 가장 인기 있는 구간이에요.'
+    : v <= 56 ? '<b>미디엄</b> — 대부분의 멀티·신세틱 스트링 권장 범위. 처음이라면 이 구간에서 시작해보세요.'
+    : '<b>타이트 텐션</b> — 공이 덜 날아가 큰 스윙에도 안정적이에요. 대신 스위트스폿이 좁아지고 팔에 부담이 커져요.';
+}
+tR.addEventListener('input', tension); tension();
+
+/* ---------- 멤버십 ---------- */
+const TIER_ICON = ['<circle cx="12" cy="12" r="8"/>','<path d="M4 16l8-10 8 10"/>','<path d="M12 3l2.6 5.6 6 .6-4.6 4 1.4 6L12 16l-5.4 3.2 1.4-6-4.6-4 6-.6Z"/>','<path d="M8 4h8v5a4 4 0 0 1-8 0Z"/><path d="M8 6H5a3 3 0 0 0 3 4M16 6h3a3 3 0 0 1-3 4M12 13v4M8 20h8"/>'];
+function renderTiers(){
+  const u = me(); const mine = u ? gradeFor(u.spent) : null;
+  $('#tiers').innerHTML = GRADES.map((g, k) => `
+    <div class="tier ${k === 3 ? 'gs' : ''} ${mine === g ? 'me' : ''}">
+      <div class="tier-badge" style="background:${g.color};color:${g.fg}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">${TIER_ICON[k]}</svg></div>
+      <h3>${g.id}</h3><div class="ko">${g.ko}</div>
+      <div class="rate">${Math.round(g.rate*100)}%<small>적립</small></div>
+      <div class="cond">${g.min ? `누적 구매 ${won(g.min)} 이상` : '회원가입 즉시'}</div>
+      <ul>${g.perks.map(p => `<li>${p}</li>`).join('')}</ul>
+    </div>`).join('');
+  $('#memberCta').innerHTML = u
+    ? `<div><h3 class="display">${esc(u.name)}님은 ${mine.id}</h3><p>보유 포인트 ${pt(u.points)} · ${nextGrade(mine) ? `${nextGrade(mine).id}까지 ${won(nextGrade(mine).min - u.spent)}` : '최고 등급 달성!'}</p></div><button class="btn btn-primary" data-my>마이페이지</button>`
+    : `<div><h3 class="display">Join & Get 3,000P</h3><p>지금 가입하면 웰컴 포인트 3,000P를 바로 드려요.</p></div><button class="btn btn-primary" data-auth="signup">무료 회원가입</button>`;
+}
+
+/* ---------- 검색 ---------- */
+$('#searchBtn').onclick = () => { $('#searchInput').value = ''; renderSearch(''); open('searchModal'); };
+function renderSearch(q){
+  q = q.trim().toLowerCase();
+  if (!q){ $('#searchRes').innerHTML = `<div class="s-hint">추천 검색어<br>${['스핀','입문','폴리','300g','클레이','오버그립'].map(k => `<button data-kw="${k}">${k}</button>`).join('')}</div>`; return; }
+  const r = P.filter(p => [p.name, p.brand, ...p.tags, p.desc, CATS.find(c => c.id === p.cat).ko].join(' ').toLowerCase().includes(q));
+  $('#searchRes').innerHTML = r.length ? r.map(p => `<button class="s-item" data-sp="${p.id}"><img src="img/${p.img}.svg" alt=""><span><b>${esc(p.name)}</b><small>${p.brand} · ${CATS.find(c => c.id === p.cat).ko}</small></span><b>${won(p.price)}</b></button>`).join('')
+    : `<div class="s-hint">‘${esc(q)}’에 대한 결과가 없어요.</div>`;
+}
+$('#searchInput').addEventListener('input', e => renderSearch(e.target.value));
+$('#searchRes').addEventListener('click', e => {
+  const k = e.target.closest('[data-kw]'); if (k){ $('#searchInput').value = k.dataset.kw; renderSearch(k.dataset.kw); return; }
+  const s = e.target.closest('[data-sp]'); if (s){ close('searchModal'); openProduct(s.dataset.sp); }
+});
+
+/* ---------- 기타 ---------- */
+$('#menuBtn').onclick = () => open('mnav');
+$('#newsForm').addEventListener('submit', e => { e.preventDefault(); e.target.reset(); toast('구독 완료! 신상품 소식을 보내드릴게요', '✉'); });
+
+const io = 'IntersectionObserver' in window ? new IntersectionObserver(es => es.forEach(en => {
+  if (en.isIntersecting){ en.target.classList.add('in'); if (en.target.id === 'lab') en.target.classList.add('inview'); io.unobserve(en.target); }
+}), { threshold: .12 }) : null;
+function observe(els){ els.forEach(el => io ? io.observe(el) : el.classList.add('in')); }
+
+function refreshAll(){ renderHeader(); renderGrid(); renderCart(); renderTiers(); }
+renderTabs(); refreshAll();
+observe([...$$('.reveal'), $('#lab')]);
+})();
+</script>
+</body>
+</html>
